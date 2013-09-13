@@ -124,7 +124,8 @@ namespace DHCPDParser
         protected KeyTerm RELEASE;
         protected StringLiteral ocsdSimpleTypes;
         protected NonTerminal ocsdSimpleTypeSequence;
-        protected KeyTerm IDENTIFIER;
+        //protected KeyTerm IDENTIFIER;
+        protected IdentifierTerminal IDENTIFIER;
 		protected IdentifierTerminal identifier;
         protected NumberLiteral number;
         protected StringLiteral syntax;
@@ -146,7 +147,7 @@ namespace DHCPDParser
 			identifier = new IdentifierTerminal("identifier");
             DOT = ToTerm(".");
             number = new NumberLiteral("number");
-            MarkPunctuation(LBRACE, RBRACE);
+            
             SLASH = ToTerm("/");
             syntax = new StringLiteral("syntax", "\"");
             base64Val = new StringLiteral("base64Val", "\"");
@@ -176,7 +177,8 @@ namespace DHCPDParser
             COMMIT = ToTerm("commit");
             EXISTS = ToTerm("exists");
             HARDWARE = ToTerm("hardware");
-            IDENTIFIER = ToTerm("identifier");
+            IDENTIFIER = new IdentifierTerminal("IDENTIFIER");
+            //IDENTIFIER = ToTerm("identifier");
             IF = ToTerm("if");
             IN = ToTerm("in");
             KEY = ToTerm("key");
@@ -230,7 +232,8 @@ namespace DHCPDParser
             stringParameter = new NonTerminal("stringParameter");
             stringParameter.Rule = STRING + SEMI;
             hostname = new NonTerminal("hostname");
-			hostname.Rule = IDENTIFIER | IDENTIFIER + DOT | hostname + DOT + IDENTIFIER;
+            
+            hostname.Rule = hostname + IDENTIFIER + DOT + IDENTIFIER  | IDENTIFIER + DOT  | IDENTIFIER;
 
             /* ip-addr-or-hostname :== ip-address | hostname
                ip-address :== NUMBER DOT NUMBER DOT NUMBER DOT NUMBER
