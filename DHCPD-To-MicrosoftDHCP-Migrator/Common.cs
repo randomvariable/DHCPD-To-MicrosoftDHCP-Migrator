@@ -11,127 +11,170 @@ namespace DHCPDParser
 {
     class Common : Grammar
     {
+        protected KeyTerm A;
+        protected KeyTerm ADD;
+        protected KeyTerm ALGORITHM;
+        protected KeyTerm AND;
+        protected KeyTerm ARRAY;
+        protected KeyTerm BANG;
+        protected KeyTerm BOOTP;
+        protected KeyTerm BREAK;
+        protected KeyTerm CASE;
+        protected KeyTerm CHAOS;
+        protected KeyTerm CHECK;
+        protected KeyTerm CLIENTHOSTNAME;
+        protected KeyTerm CLIENTS;
+        protected KeyTerm COLON;
+        protected KeyTerm COMMA;
+        protected KeyTerm COMMIT;
+        protected KeyTerm CONCAT;
+        protected KeyTerm DELETE;
+        protected KeyTerm DOT;
+        protected KeyTerm DYNAMIC;
+        protected KeyTerm ELSE;
+        protected KeyTerm ELSEIF;
+        protected KeyTerm EPOCH;
+        protected KeyTerm EQUAL;
+        protected KeyTerm EQUALS;
+        protected KeyTerm EXISTS;
+        protected KeyTerm EXPIRY;
+        protected KeyTerm EXTRACT_INT;
+        protected KeyTerm HARDWARE;
+        protected KeyTerm IF;
+        protected KeyTerm IN;
+        protected KeyTerm KEY;
+        protected KeyTerm LBRACE;
+        protected KeyTerm LCASE;
+        protected KeyTerm LPAREN;
+        protected KeyTerm MX;
+        protected KeyTerm NEVER;
+        protected KeyTerm NOT;
+        protected KeyTerm NS;
+        protected KeyTerm NUMBER;
+        protected KeyTerm OF;
+        protected KeyTerm OPTION;
+        protected KeyTerm OPTION_NAME;
+        protected KeyTerm OR;
+        protected KeyTerm PACKET;
+        protected KeyTerm PREPEND;
+        protected KeyTerm PRIMARY;
+        protected KeyTerm PRIMARY6;
+        protected KeyTerm PTR;
+        protected KeyTerm RBRACE;
+        protected KeyTerm REGEX_MATCH;
+        protected KeyTerm RELEASE;
+        protected KeyTerm LOG_FACILITY;
+        protected KeyTerm RPAREN;
+        protected KeyTerm SECONDARY;
+        protected KeyTerm SECONDARY6;
+        protected KeyTerm SECRET;
         protected KeyTerm SEMI;
+        protected KeyTerm SLASH;
+        protected KeyTerm SUBSTRING;
+        protected KeyTerm SUFFIX;
+        protected KeyTerm SUPERSEDE;
+        protected KeyTerm TXT;
+        protected KeyTerm UCASE;
+        protected KeyTerm UPDATE;
+        protected KeyTerm UNKNOWN;
+        
         protected ConstantTerminal nil;
         protected ConstantTerminal BOOLEAN;
-        protected KeyTerm LBRACE;
-        protected KeyTerm RBRACE;
-        protected NonTerminal stringParameter;
-        protected KeyTerm STRING;
-        protected NonTerminal hostname;
-        protected NonTerminal ipAddrOrHostname;
-        protected NonTerminal ipAddress;
-        protected KeyTerm DOT;
-        protected KeyTerm SLASH;
-        protected KeyTerm NUMBER;
-        protected NonTerminal leaseTime;
+
+        protected IdentifierTerminal DNSIDENTIFIER;
+        protected IdentifierTerminal IDENTIFIER;
+
+        protected NumberLiteral number;
+        protected NumberLiteral hexNumber;
+
+        protected StringLiteral base64Val;
+        protected StringLiteral expr;
+        protected FreeTextLiteral hardwareType;
         protected StringLiteral ip6Address;
-        protected NonTerminal ipAddressWithSubnet;
-		protected NonTerminal hardwareParameter;
-		protected StringLiteral hardwareType;
-        protected NonTerminal ip6Prefix;
-        protected NonTerminal date;
-        protected KeyTerm COLON;
-        protected NonTerminal optionName;
-        protected NonTerminal ocd;
-        protected NonTerminal ocsd;
-        protected StringLiteral ocsdTypeSequence;
-        protected StringLiteral oscdTypes;
+        protected StringLiteral nsClass;
+        protected StringLiteral nsType;
         protected StringLiteral ocsdType;
         protected StringLiteral ocsdSimpleType;
+        protected StringLiteral ocsdSimpleTypes;
+        protected StringLiteral ocsdTypeSequence;
+        protected StringLiteral oscdTypes;
+        protected StringLiteral STRING;
+        protected FreeTextLiteral syntax;
+
         protected NonTerminal base64;
+        protected NonTerminal booleanExpression;
+        protected NonTerminal caseStatement;
         protected NonTerminal colonSeparatedHexList;
-        protected NonTerminal executableStatements;
+        protected NonTerminal dataExpression;
+        protected NonTerminal date;
+        protected NonTerminal dnsExpression;
+        protected NonTerminal DYNAMIC_BOOTP;
+        protected NonTerminal elseStatement;
         protected NonTerminal executableStatement;
-        protected NonTerminal zoneStatements;
-        protected NonTerminal zoneStatement;
-        protected KeyTerm PRIMARY;
-        protected KeyTerm SECONDARY;
-        protected KeyTerm PRIMARY6;
-        protected KeyTerm SECONDARY6;
+        protected NonTerminal executableStatements;
+        protected NonTerminal eventType;
+        protected NonTerminal eventTypes;
+        protected NonTerminal hostname;
+        protected NonTerminal ifStatement;
+        protected NonTerminal ipAddress;
+        protected NonTerminal ipAddresses;
+        protected NonTerminal ipAddrOrHostname;
+        protected NonTerminal ip6Prefix;
+        protected NonTerminal ipAddressWithSubnet;
+		protected NonTerminal hardwareParameter;
         protected NonTerminal keyReference;
         protected NonTerminal keyStatements;
         protected NonTerminal keyStatement;
-        protected KeyTerm ALGORITHM;
-        protected NonTerminal secretDefinition;
-        protected StringLiteral base64Val;
-        protected NonTerminal onStatement;
-        protected NonTerminal eventTypes;
-        protected NonTerminal eventType;
-        protected NonTerminal switchStatement;
-        protected StringLiteral expr;
-        protected KeyTerm RPAREN;
-        protected NonTerminal caseStatement;
-        protected KeyTerm CASE;
-        protected KeyTerm EXTRACT_INT;
-        protected NonTerminal ifStatement;
-        protected NonTerminal booleanExpression;
-        protected NonTerminal elseStatement;
-        protected KeyTerm ELSE;
-        protected KeyTerm ELSEIF;
-        protected KeyTerm CHECK;
-        protected NonTerminal dataExpression;
-        protected KeyTerm EQUAL;
-        protected KeyTerm EQUALS;
-        protected KeyTerm BANG;
-        protected KeyTerm REGEX_MATCH;
-        protected KeyTerm AND;
-        protected KeyTerm OR;
-        protected KeyTerm EXISTS;
-        protected KeyTerm OPTION_NAME;
-        protected KeyTerm SUBSTRING;
-        protected KeyTerm LPAREN;
-        protected KeyTerm COMMA;
+        protected NonTerminal leaseTime;
         protected NonTerminal numericExpression;
-        protected KeyTerm CONCAT;
-        protected KeyTerm SUFFIX;
-        protected KeyTerm LCASE;
-        protected KeyTerm UCASE;
-        protected KeyTerm OPTION;
-        protected KeyTerm HARDWARE;
-        protected KeyTerm PACKET;
-        protected NonTerminal dnsExpression;
-        protected KeyTerm UPDATE;
-        protected KeyTerm DELETE;
-        protected KeyTerm NOT;
-        protected KeyTerm IN;
-        protected KeyTerm CHAOS;
-        protected KeyTerm NS;
-        protected StringLiteral nsClass;
-        protected StringLiteral nsType;
-        protected KeyTerm A;
-        protected KeyTerm PTR;
-        protected KeyTerm MX;
-        protected KeyTerm TXT;
-        protected NonTerminal optionStatement;
-        protected KeyTerm EPOCH;
-        protected KeyTerm NEVER;
-        protected KeyTerm ADD;
-        protected KeyTerm BREAK;
-        protected KeyTerm CLIENTHOSTNAME;
-        protected KeyTerm DYNAMIC_BOOTP;
-        protected KeyTerm IF;
-        protected KeyTerm PREPEND;
-        protected KeyTerm SUPERSEDE;
-        protected StringLiteral optionParameter;
-        protected NonTerminal ipAddresses;
-        protected KeyTerm ARRAY;
-        protected KeyTerm OF;
-        protected KeyTerm KEY;
-        protected KeyTerm SECRET;
-        protected KeyTerm EXPIRY;
-        protected KeyTerm COMMIT;
-        protected KeyTerm RELEASE;
-        protected StringLiteral ocsdSimpleTypes;
+        protected NonTerminal ocd;
+        protected NonTerminal ocsd;
         protected NonTerminal ocsdSimpleTypeSequence;
-        //protected KeyTerm IDENTIFIER;
-        protected IdentifierTerminal IDENTIFIER;
-		protected IdentifierTerminal identifier;
-        protected NumberLiteral number;
-        protected StringLiteral syntax;
+        protected NonTerminal onStatement;
+        protected NonTerminal optionName;
+        protected NonTerminal optionParameter;
+        protected NonTerminal optionStatement;
+        protected NonTerminal secretDefinition;
+        protected NonTerminal stringParameter;
+        protected NonTerminal switchStatement;
+        protected NonTerminal UNKNOWN_CLIENTS2;
+        protected NonTerminal zoneStatement;
+        protected NonTerminal zoneStatements;
+     
+		
 
 		public Common()
 		{
+            A = ToTerm("A");
+            ADD = ToTerm("add");
+            ALGORITHM = ToTerm("algorithm");
+            AND = ToTerm("AND");
+            ARRAY = ToTerm("array");
+            BANG = ToTerm("!");
+            BOOTP = ToTerm("bootp");
+            BREAK = ToTerm("BREAK");
+            CASE = ToTerm("CASE");
+            CHAOS = ToTerm("CHAOS");
+            CHECK = ToTerm("check");
+            LOG_FACILITY = ToTerm("log-facility");
+            CLIENTS = ToTerm("clients");
+            CONCAT = ToTerm("+");
+            DELETE = ToTerm("delete");
+            DYNAMIC = ToTerm("dynamic");
+            ELSE = ToTerm("ELSE");
+            ELSEIF = ToTerm("ELSEIF");
+            EPOCH = ToTerm("epoch");
+            EQUAL = ToTerm("=");
+            EQUALS = ToTerm("==");
+            EXPIRY = ToTerm("expiry");
+            UNKNOWN = ToTerm("unknown");
+
+            DYNAMIC_BOOTP = new NonTerminal("DYNAMIC_BOOTP");
+            UNKNOWN_CLIENTS2 = new NonTerminal("UNKNOWN_CLIENTS");
+
+            DYNAMIC_BOOTP.Rule = DYNAMIC + BOOTP + CLIENTS;
+            UNKNOWN_CLIENTS2.Rule = UNKNOWN + CLIENTS;
+
             SEMI = ToTerm(";");
             nil = new ConstantTerminal(("nil"),typeof(LiteralValueNode));
 			nil.Add("nil",null);
@@ -144,32 +187,16 @@ namespace DHCPDParser
             RBRACE = ToTerm("}");
             COLON = ToTerm(":");
             ip6Address = new StringLiteral("ip6Address", "\"");
-			identifier = new IdentifierTerminal("identifier");
+			
             DOT = ToTerm(".");
-            number = new NumberLiteral("number");
+            number = new NumberLiteral("number",NumberOptions.IntOnly);
+            hexNumber = new NumberLiteral("hexNumber",NumberOptions.Hex);
+            
+
             
             SLASH = ToTerm("/");
-            syntax = new StringLiteral("syntax", "\"");
+            syntax = new FreeTextLiteral("syntax",";");
             base64Val = new StringLiteral("base64Val", "\"");
-            A = ToTerm("A");
-            ADD = ToTerm("add");
-            ALGORITHM = ToTerm("algorithm");
-            AND = ToTerm("AND");
-            ARRAY = ToTerm("array");
-            BANG = ToTerm("!");
-            BREAK = ToTerm("BREAK");
-            CASE = ToTerm("CASE");
-            CHAOS = ToTerm("CHAOS");
-            CHECK = ToTerm("check");
-            CONCAT = ToTerm("+");
-            DELETE = ToTerm("delete");
-            DYNAMIC_BOOTP = ToTerm("dynamic-bootp");
-            ELSE = ToTerm("ELSE");
-            ELSEIF = ToTerm("ELSEIF");
-            EPOCH = ToTerm("epoch");
-            EQUAL = ToTerm("=");
-            EQUALS = ToTerm("==");
-            EXPIRY = ToTerm("expiry");
             expr = new StringLiteral("expr");
             EXTRACT_INT = ToTerm("Eh");
             CLIENTHOSTNAME = ToTerm("client-hostname");
@@ -178,6 +205,7 @@ namespace DHCPDParser
             EXISTS = ToTerm("exists");
             HARDWARE = ToTerm("hardware");
             IDENTIFIER = new IdentifierTerminal("IDENTIFIER");
+            IDENTIFIER.AllChars = IDENTIFIER.AllChars + "-";
             //IDENTIFIER = ToTerm("identifier");
             IF = ToTerm("if");
             IN = ToTerm("in");
@@ -210,15 +238,14 @@ namespace DHCPDParser
             TXT = ToTerm("txt");
             UCASE = ToTerm("ucase");
             UPDATE = ToTerm("update");
-            STRING = ToTerm("\"");
-            hardwareType = new StringLiteral("hardware-type", "\"");
+            STRING = new StringLiteral("STRING","\"");
+            hardwareType = new FreeTextLiteral("hardware-type", " ");
             nsClass = new StringLiteral("ns-class", "\"");
             nsType = new StringLiteral("ns-type", "\"");
             ocsdSimpleType = new StringLiteral("oscd-simple-type", "\"");
             ocsdSimpleTypes = new StringLiteral("ocsd-simple-type", "\"");
             ocsdType = new StringLiteral("ocsd-type", "\"");
             ocsdTypeSequence = new StringLiteral("ocsd-type-sequence","\"");
-            optionParameter = new StringLiteral("optionParameter","\"");
             oscdTypes = new StringLiteral("oscd-types");
 
             /* string-parameter :== STRING SEMI */
@@ -229,11 +256,16 @@ namespace DHCPDParser
              *		| hostname DOT IDENTIFIER
              */
 
-            stringParameter = new NonTerminal("stringParameter");
+            stringParameter = new NonTerminal("string-parameter");
             stringParameter.Rule = STRING + SEMI;
-            hostname = new NonTerminal("hostname");
-            
-            hostname.Rule = hostname + IDENTIFIER + DOT + IDENTIFIER  | IDENTIFIER + DOT  | IDENTIFIER;
+            hostname = new NonTerminal("hostname-parameter");
+            DNSIDENTIFIER = new IdentifierTerminal("hostname");
+            DNSIDENTIFIER.AllFirstChars = DNSIDENTIFIER.AllChars;
+            DNSIDENTIFIER.AllChars = DNSIDENTIFIER.AllChars + ".-";
+
+            hostname.Rule = DNSIDENTIFIER  | STRING ;
+
+            MarkPunctuation(SEMI, LBRACE, RBRACE, LPAREN, RPAREN, STRING);
 
             /* ip-addr-or-hostname :== ip-address | hostname
                ip-address :== NUMBER DOT NUMBER DOT NUMBER DOT NUMBER
@@ -251,7 +283,7 @@ namespace DHCPDParser
              */
 
             ipAddress = new NonTerminal("ipAddress");
-            ipAddress.Rule = NUMBER + DOT + NUMBER + DOT + NUMBER + DOT + NUMBER;
+            ipAddress.Rule = number + DOT + number + DOT + number + DOT + number;
 
             ipAddrOrHostname = new NonTerminal("ipAddrOrHostname");
             ipAddrOrHostname.Rule = ipAddress | hostname;
@@ -269,8 +301,8 @@ namespace DHCPDParser
              * function.
              */
 
-            leaseTime = new NonTerminal("leaseTime");
-            leaseTime.Rule = NUMBER + SEMI;
+            leaseTime = new NonTerminal("lease-time");
+            leaseTime.Rule = number + SEMI;
 
             /*
              * ip6-prefix :== ip6-address "/" NUMBER
@@ -293,7 +325,7 @@ namespace DHCPDParser
              */
 
             colonSeparatedHexList = new NonTerminal("colonSeparatedHexList");
-            colonSeparatedHexList.Rule = NUMBER | NUMBER + COLON + colonSeparatedHexList;
+            colonSeparatedHexList.Rule = hexNumber | hexNumber + COLON + colonSeparatedHexList;
 
 
             /*
@@ -374,7 +406,7 @@ namespace DHCPDParser
                         IP-ADDRESS |
                         TEXT |
                         STRING |
-                        ENCAPSULATE identifier */
+                        ENCAPSULATE IDENTIFIER */
 
             ocd = new NonTerminal("ocd");
             ocd.Rule = NUMBER + EQUALS + ocsd + SEMI;
@@ -408,6 +440,13 @@ namespace DHCPDParser
              *	APPEND option-parameter SEMI
              */
 
+            optionParameter = new NonTerminal("option-parameter");
+            optionParameter.Rule = IDENTIFIER + IDENTIFIER + SEMI |
+                                   IDENTIFIER + ipAddrOrHostname + SEMI |
+                                   IDENTIFIER + BOOLEAN +SEMI |
+                                   IDENTIFIER + NUMBER + SEMI |
+                                   IDENTIFIER + IDENTIFIER + syntax + SEMI;
+
             executableStatements = new NonTerminal("executableStatements");
 			executableStatements.Rule = executableStatement + executableStatement | executableStatement;
 
@@ -428,7 +467,7 @@ namespace DHCPDParser
                ip-addresses :== ip-addr-or-hostname |
                       ip-addr-or-hostname COMMA ip-addresses
                key-reference :== KEY STRING |
-                        KEY identifier */
+                        KEY IDENTIFIER */
 
             zoneStatements = new NonTerminal("zoneStatements");
             zoneStatements.Rule = zoneStatement | zoneStatement + zoneStatements;
@@ -443,7 +482,7 @@ namespace DHCPDParser
             ipAddresses = new NonTerminal("ipAddresses");
             ipAddresses.Rule = ipAddrOrHostname | ipAddrOrHostname + COMMA + ipAddresses;
             keyReference = new NonTerminal("keyReference");
-            keyReference.Rule = KEY + STRING | KEY + identifier;
+            keyReference.Rule = KEY + STRING | KEY + IDENTIFIER;
 
             /* key-statements :== key-statement |
                           key-statement key-statements
@@ -599,16 +638,17 @@ namespace DHCPDParser
 
 
 
-            /* option-statement :== identifier DOT identifier <syntax> SEMI
-                          | identifier <syntax> SEMI
+            /* option-statement :== IDENTIFIER DOT IDENTIFIER <syntax> SEMI
+                          | IDENTIFIER <syntax> SEMI
 
                Option syntax is handled specially through format strings, so it
                would be painful to come up with BNF for it.   However, it always
                starts as above and ends in a SEMI. */
             optionStatement = new NonTerminal("optionStatement");
-            optionStatement.Rule = identifier + DOT + identifier + syntax + SEMI | identifier + syntax + SEMI;
+            optionStatement.Rule = OPTION + IDENTIFIER + syntax  + SEMI| OPTION + syntax +SEMI;
 
-
+            CommentTerminal comment = new CommentTerminal("Comment", "#", Environment.NewLine);
+            NonGrammarTerminals.Add(comment);
 		}
 
     }

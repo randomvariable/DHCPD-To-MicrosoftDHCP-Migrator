@@ -88,6 +88,9 @@ csx
 # Windows Store app package directory
 AppPackages/
 
+ucltestdata/
+ucltestdata/*
+
 # Others
 [Bb]in
 [Oo]bj
