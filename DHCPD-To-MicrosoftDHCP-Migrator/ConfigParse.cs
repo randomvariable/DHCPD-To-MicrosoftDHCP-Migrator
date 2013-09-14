@@ -1,4 +1,5 @@
 ﻿using Irony.Ast;
+using Irony.Interpreter.Ast;
 using Irony.Parsing;
 using Irony.Parsing.Construction;
 using System;
@@ -82,7 +83,7 @@ namespace DHCPDParser
             NonTerminal failOverDeclaration = new NonTerminal("failover-declaration");
             NonTerminal fixedAddrParameter = new NonTerminal("fixed-addr-parameter");
             NonTerminal fixedPrefix6 = new NonTerminal("fixed-prefix6");
-            NonTerminal declarations = new NonTerminal("declarations");
+            NonTerminal declarations = new NonTerminal("declarations", typeof(StatementListNode));
             NonTerminal groupDeclaration = new NonTerminal("group-declaration");
             NonTerminal hostDeclaration = new NonTerminal("host-declaration");
             NonTerminal ipAddrsOrHostnames = new NonTerminal("ip-addrs-or-hostnames");
@@ -92,11 +93,11 @@ namespace DHCPDParser
             NonTerminal leaseParameters = new NonTerminal("lease_parameters");
             NonTerminal leaseStatements = new NonTerminal("lease-statements");
             NonTerminal parameter = new NonTerminal("parameter");
-            NonTerminal parameters = new NonTerminal("parameters");
+            NonTerminal parameters = new NonTerminal("parameters", typeof(StatementListNode));
             NonTerminal poolDeclaration = new NonTerminal("pool-declaration");
             NonTerminal sharedNetworkDeclaration = new NonTerminal("shared-network-declaration");
             NonTerminal statement = new NonTerminal("statement");
-            NonTerminal statements = new NonTerminal("statements");
+            NonTerminal statements = new NonTerminal("statements", typeof(StatementListNode));
             NonTerminal subnetDeclaration = new NonTerminal("subnet-declaration");
             NonTerminal subnet6Declaration = new NonTerminal("subnet6-declaration");
             
@@ -238,7 +239,8 @@ namespace DHCPDParser
             //statements.Rule = statement | statements;
             //statements.Rule = declarations | parameters | statements;
 
-            statements.Rule = nil | statement | statements + statement;
+            //statements.Rule = nil | statement | statements + statement;
+            statements.Rule = MakeStarRule(statements, null, statement);
 
 
 
@@ -341,7 +343,7 @@ namespace DHCPDParser
 
             allowDenyKeyword.Rule = BOOTP | BOOTING | DYNAMIC_BOOTP | UNKNOWN_CLIENTS | UNKNOWN_CLIENTS2 |  CLIENT_UPDATES;
 
-            MarkTransient( declaration, declarations);
+
         }
     }
 }
