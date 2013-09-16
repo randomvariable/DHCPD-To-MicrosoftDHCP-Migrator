@@ -1,15 +1,10 @@
-﻿using Irony.Ast;
-using Irony.Interpreter.Ast;
+﻿using Irony.Interpreter.Ast;
 using Irony.Parsing;
-using Irony.Parsing.Construction;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace DHCPDParser
+namespace DhcpdToMicrosoft.Parser
 {
-    class Common : Grammar
+    public class CommonGrammar : Grammar
     {
         protected KeyTerm A;
         protected KeyTerm ADD;
@@ -140,10 +135,10 @@ namespace DHCPDParser
         protected NonTerminal UNKNOWN_CLIENTS2;
         protected NonTerminal zoneStatement;
         protected NonTerminal zoneStatements;
-     
-		
 
-		public Common()
+
+
+        public CommonGrammar()
 		{
             A = ToTerm("A");
             ADD = ToTerm("add");

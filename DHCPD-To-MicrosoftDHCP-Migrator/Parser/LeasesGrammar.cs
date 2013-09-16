@@ -1,17 +1,11 @@
-﻿using Irony.Ast;
-using Irony.Interpreter.Ast;
+﻿using Irony.Interpreter.Ast;
 using Irony.Parsing;
-using Irony.Parsing.Construction;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace DHCPDParser
+namespace DhcpdToMicrosoft.Parser
 {
-    class ConfigParse : Common
+    class LeasesGrammar : CommonGrammar
     {
-        public ConfigParse() 
+        public LeasesGrammar() 
         {
             KeyTerm ALLOW = ToTerm("allow");
             KeyTerm ADAPTIVE_LEASE_TIME_THRESHOLD = ToTerm("adaptive-lease-time-threshold");

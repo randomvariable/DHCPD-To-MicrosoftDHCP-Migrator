@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewDataSet" targetNamespace="http://schemas.microsoft.com/windows/DHCPServer" xmlns:mstns="http://schemas.microsoft.com/windows/DHCPServer" xmlns="http://schemas.microsoft.com/windows/DHCPServer" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:complexType name="Classes">
+    <xs:sequence>
+      <xs:element name="Class" form="unqualified" type="mstns:Class" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Class">
+    <xs:sequence>
+      <xs:element name="Name" form="unqualified" type="xs:string" />
+      <xs:element name="Type" form="unqualified" type="xs:string" />
+      <xs:element name="Data" form="unqualified" type="xs:string" />
+      <xs:element name="Description" form="unqualified" type="xs:string" minOccurs="0" />
+      <xs:element name="VendorId" form="unqualified" type="xs:integer" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Classes" type="mstns:Classes" />
+  <xs:complexType name="OptionDefinitions">
+    <xs:sequence>
+      <xs:element name="OptionDefinition" form="unqualified" type="mstns:OptionDefinition" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OptionDefinition">
+    <xs:sequence>
+      <xs:element name="Name" form="unqualified" type="xs:string" />
+      <xs:element name="OptionId" form="unqualified" type="xs:integer" />
+      <xs:element name="Type" form="unqualified" type="xs:string" />
+      <xs:element name="MultiValued" form="unqualified" type="xs:boolean" />
+      <xs:element name="Description" form="unqualified" type="xs:string" minOccurs="0" />
+      <xs:element name="VendorClass" form="unqualified" type="xs:string" minOccurs="0" />
+      <xs:element name="DefaultValue" form="unqualified" nillable="true" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:simpleContent msdata:ColumnName="DefaultValue_Column" msdata:Ordinal="0">
+            <xs:extension base="xs:string">
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OptionDefinitions" type="mstns:OptionDefinitions" />
+  <xs:complexType name="Policies">
+    <xs:sequence>
+      <xs:element name="Policy" form="unqualified" type="mstns:Policy" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Policy">
+    <xs:sequence>
+      <xs:element name="Name" form="unqualified" type="xs:string" />
+      <xs:element name="ProcessingOrder" form="unqualified" type="xs:integer" />
+      <xs:element name="Enabled" form="unqualified" type="xs:boolean" />
+      <xs:element name="Condition" form="unqualified" type="xs:string" />
+      <xs:element name="Description" form="unqualified" type="xs:string" minOccurs="0" />
+      <xs:element name="VendorClass" form="unqualified" nillable="true" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:simpleContent msdata:ColumnName="VendorClass_Column" msdata:Ordinal="0">
+            <xs:extension base="xs:string">
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UserClass" form="unqualified" nillable="true" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:simpleContent msdata:ColumnName="UserClass_Column" msdata:Ordinal="0">
+            <xs:extension base="xs:string">
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="MacAddress" form="unqualified" nillable="true" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:simpleContent msdata:ColumnName="MacAddress_Column" msdata:Ordinal="0">
+            <xs:extension base="xs:string">
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ClientId" form="unqualified" nillable="true" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:simpleContent msdata:ColumnName="ClientId_Column" msdata:Ordinal="0">
+            <xs:extension base="xs:string">
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RelayAgent" form="unqualified" nillable="true" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:simpleContent msdata:ColumnName="RelayAgent_Column" msdata:Ordinal="0">
+            <xs:extension base="xs:string">
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CircuitId" form="unqualified" nillable="true" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:simpleContent msdata:ColumnName="CircuitId_Column" msdata:Ordinal="0">
+            <xs:extension base="xs:string">
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RemoteId" form="unqualified" nillable="true" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:simpleContent msdata:ColumnName="RemoteId_Column" msdata:Ordinal="0">
+            <xs:extension base="xs:string">
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SubscriberId" form="unqualified" nillable="true" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:simpleContent msdata:ColumnName="SubscriberId_Column" msdata:Ordinal="0">
+            <xs:extension base="xs:string">
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="IPRanges" form="unqualified" type="mstns:IPRanges" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element ref="OptionValues" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IPRanges">
+    <xs:sequence>
+      <xs:element ref="IPRange" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Policies" type="mstns:Policies" />
+  <xs:complexType name="IPRange">
+    <xs:sequence>
+      <xs:element name="StartRange" form="unqualified" type="xs:string" />
+      <xs:element name="EndRange" form="unqualified" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IPRange" type="mstns:IPRange" />
+  <xs:complexType name="OptionValues">
+    <xs:sequence>
+      <xs:element name="OptionValue" form="unqualified" type="mstns:OptValue" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OptValue">
+    <xs:sequence>
+      <xs:element name="OptionId" form="unqualified" type="xs:integer" />
+      <xs:element name="VendorClass" form="unqualified" type="xs:string" minOccurs="0" />
+      <xs:element name="UserClass" form="unqualified" type="xs:string" minOccurs="0" />
+      <xs:element name="Value" form="unqualified" nillable="true" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:simpleContent msdata:ColumnName="Value_Column" msdata:Ordinal="0">
+            <xs:extension base="xs:string">
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OptionValues" type="mstns:OptionValues" />
+  <xs:complexType name="v4Scopes">
+    <xs:sequence>
+      <xs:element name="Scope" form="unqualified" type="mstns:ScopeIPv4" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ScopeIPv4">
+    <xs:sequence>
+      <xs:element name="ScopeId" form="unqualified" type="xs:string" />
+      <xs:element name="Name" form="unqualified" type="xs:string" />
+      <xs:element name="SubnetMask" form="unqualified" type="xs:string" />
+      <xs:element name="StartRange" form="unqualified" type="xs:string" />
+      <xs:element name="EndRange" form="unqualified" type="xs:string" />
+      <xs:element name="LeaseDuration" form="unqualified" type="xs:string" />
+      <xs:element name="State" form="unqualified" type="xs:string" />
+      <xs:element name="Type" form="unqualified" type="xs:string" />
+      <xs:element name="MaxBootpClients" form="unqualified" type="xs:integer" />
+      <xs:element name="NapEnable" form="unqualified" type="xs:boolean" />
+      <xs:element name="Delay" form="unqualified" type="xs:integer" minOccurs="0" />
+      <xs:element name="NapProfile" form="unqualified" type="xs:string" minOccurs="0" />
+      <xs:element name="Description" form="unqualified" type="xs:string" minOccurs="0" />
+      <xs:element name="ActivatePolicies" form="unqualified" type="xs:boolean" minOccurs="0" />
+      <xs:element name="SuperScopeName" form="unqualified" type="xs:string" minOccurs="0" />
+      <xs:element name="ExclusionRanges" form="unqualified" type="mstns:IPRanges" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element ref="Policies" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element ref="OptionValues" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="Reservations" form="unqualified" type="mstns:IPv4Reservations" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="Leases" form="unqualified" type="mstns:IPv4Leases" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IPv4Reservations">
+    <xs:sequence>
+      <xs:element name="Reservation" form="unqualified" type="mstns:IPv4Reservation" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IPv4Reservation">
+    <xs:sequence>
+      <xs:element name="Name" form="unqualified" type="xs:string" />
+      <xs:element name="IPAddress" form="unqualified" type="xs:string" />
+      <xs:element name="ClientId" form="unqualified" type="xs:string" />
+      <xs:element name="Type" form="unqualified" type="xs:string" />
+      <xs:element name="Description" form="unqualified" type="xs:string" minOccurs="0" />
+      <xs:element ref="OptionValues" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IPv4Leases">
+    <xs:sequence>
+      <xs:element name="Lease" form="unqualified" type="mstns:IPv4Lease" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IPv4Lease">
+    <xs:sequence>
+      <xs:element name="IPAddress" form="unqualified" type="xs:string" />
+      <xs:element name="ScopeId" form="unqualified" type="xs:string" />
+      <xs:element name="ClientId" form="unqualified" type="xs:string" />
+      <xs:element name="AddressState" form="unqualified" type="xs:string" />
+      <xs:element name="ClientType" form="unqualified" type="xs:string" />
+      <xs:element name="NapCapable" form="unqualified" type="xs:boolean" />
+      <xs:element name="DnsRR" form="unqualified" type="xs:string" minOccurs="0" />
+      <xs:element name="DnsRegistration" form="unqualified" type="xs:string" minOccurs="0" />
+      <xs:element name="LeaseExpiryTime" form="unqualified" type="xs:string" minOccurs="0" />
+      <xs:element name="ProbationEnds" form="unqualified" type="xs:string" minOccurs="0" />
+      <xs:element name="NapStatus" form="unqualified" type="xs:string" minOccurs="0" />
+      <xs:element name="HostName" form="unqualified" type="xs:string" minOccurs="0" />
+      <xs:element name="PolicyName" form="unqualified" type="xs:string" minOccurs="0" />
+      <xs:element name="Description" form="unqualified" type="xs:string" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Scopes" type="mstns:v4Scopes" />
+  <xs:complexType name="DHCPServer">
+    <xs:sequence>
+      <xs:element name="MajorVersion" form="unqualified" type="xs:integer" />
+      <xs:element name="MinorVersion" form="unqualified" type="xs:integer" />
+      <xs:element name="IPv4" form="unqualified" type="mstns:DHCPv4" />
+      <xs:element name="IPv6" form="unqualified" type="mstns:DHCPv6" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DHCPv4">
+    <xs:sequence>
+      <xs:element name="ConflictDetectionAttempts" form="unqualified" type="xs:integer" />
+      <xs:element name="NapEnabled" form="unqualified" type="xs:boolean" />
+      <xs:element name="NpsUnreachableAction" form="unqualified" type="xs:string" />
+      <xs:element name="ActivatePolicies" form="unqualified" type="xs:boolean" minOccurs="0" />
+      <xs:element ref="Classes" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element ref="OptionDefinitions" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element ref="Policies" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element ref="OptionValues" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="Filters" form="unqualified" type="mstns:Filters" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element ref="Scopes" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Filters">
+    <xs:sequence>
+      <xs:element name="Allow" form="unqualified" type="xs:boolean" />
+      <xs:element name="Deny" form="unqualified" type="xs:boolean" />
+      <xs:element name="Filter" form="unqualified" type="mstns:IPv4Filter" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IPv4Filter">
+    <xs:sequence>
+      <xs:element name="List" form="unqualified" type="xs:string" />
+      <xs:element name="MacAddress" form="unqualified" type="xs:string" />
+      <xs:element name="Description" form="unqualified" type="xs:string" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DHCPv6">
+    <xs:sequence>
+      <xs:element ref="Classes" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element ref="OptionDefinitions" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element ref="OptionValues" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="StatelessStore" form="unqualified" type="mstns:StatelessStore" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element ref="Scopes" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StatelessStore">
+    <xs:sequence>
+      <xs:element name="Enabled" form="unqualified" type="xs:boolean" />
+      <xs:element name="PurgeInterval" form="unqualified" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DHCPServer" type="mstns:DHCPServer" />
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="Classes" />
+        <xs:element ref="OptionDefinitions" />
+        <xs:element ref="Policies" />
+        <xs:element ref="IPRange" />
+        <xs:element ref="OptionValues" />
+        <xs:element ref="Scopes" />
+        <xs:element ref="DHCPServer" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

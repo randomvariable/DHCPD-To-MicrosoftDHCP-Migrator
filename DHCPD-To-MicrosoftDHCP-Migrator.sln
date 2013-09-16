@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DHCPD-To-MicrosoftDHCP-Migrator", "DHCPD-To-MicrosoftDHCP-Migrator\DHCPD-To-MicrosoftDHCP-Migrator.csproj", "{39995952-B29D-4666-B9BE-300C1F449032}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DhcpdToMicrosoft", "DHCPD-To-MicrosoftDHCP-Migrator\DhcpdToMicrosoft.csproj", "{39995952-B29D-4666-B9BE-300C1F449032}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DhcpdToMicrosoftCLI", "DhcpdToMicrosoftCLI\DhcpdToMicrosoftCLI.csproj", "{D83B16F0-32D7-4915-A88C-EA1269A76627}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		{39995952-B29D-4666-B9BE-300C1F449032}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39995952-B29D-4666-B9BE-300C1F449032}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39995952-B29D-4666-B9BE-300C1F449032}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D83B16F0-32D7-4915-A88C-EA1269A76627}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D83B16F0-32D7-4915-A88C-EA1269A76627}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D83B16F0-32D7-4915-A88C-EA1269A76627}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D83B16F0-32D7-4915-A88C-EA1269A76627}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

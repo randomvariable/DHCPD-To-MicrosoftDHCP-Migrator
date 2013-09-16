@@ -46,9 +46,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common.cs" />
-    <Compile Include="ConfigParse.cs" />
+    <Compile Include="Compiler\Config\ConfFile.cs" />
+    <Compile Include="Compiler\Config\SubnetDeclaration.cs" />
+    <Compile Include="Compiler\NonAST\Compiler.cs" />
+    <Compile Include="Model\DhcpServerSchema.cs">
+      <DependentUpon>DhcpServerSchema.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Parser\CommonGrammar.cs" />
+    <Compile Include="Parser\ConfigGrammar.cs" />
+    <Compile Include="Parser\LeasesGrammar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\DhcpdParser.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CLI\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Model\DhcpServerSchema.xsc">
+      <DependentUpon>DhcpServerSchema.xsd</DependentUpon>
+    </None>
+    <None Include="Model\DhcpServerSchema.xsd" />
+    <None Include="Model\DhcpServerSchema.xss">
+      <DependentUpon>DhcpServerSchema.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
