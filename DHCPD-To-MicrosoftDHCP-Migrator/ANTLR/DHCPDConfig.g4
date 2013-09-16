@@ -7,10 +7,7 @@
 grammar DHCPDConfig;
 import DHCPLexer;
 
-options
-{
-    language=CSharp_v4_5;
-}
+
  
 
 config: statement*;

@@ -33,12 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Irony">
-      <HintPath>..\DHCPD-To-MicrosoftDHCP-Migrator\lib\Irony.dll</HintPath>
-    </Reference>
-    <Reference Include="Irony.Interpreter">
-      <HintPath>..\DHCPD-To-MicrosoftDHCP-Migrator\lib\Irony.Interpreter.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
