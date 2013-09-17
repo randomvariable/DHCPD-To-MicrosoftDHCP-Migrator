@@ -51,7 +51,6 @@ namespace DhcpdToMicrosoft.Utility
             HashSet<uint> IPNumbers = new HashSet<uint>();
             foreach (IPAddress address in IPs)
             {
-                logger.Debug("For exclusion " + address.ToUint());
                 IPNumbers.Add(address.ToUint());
             }
             IEnumerable<IEnumerable<uint>> IPNumberGroups = IPNumbers.Distinct()
