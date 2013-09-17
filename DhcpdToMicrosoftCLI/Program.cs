@@ -16,8 +16,8 @@ namespace DhcpdToMicrosoftCLI
     {
         static void Main(string[] args)
         {
-
-            string text = System.IO.File.ReadAllText(@"I:\Work\DHCPD-To-MicrosoftDHCP-Migrator\ucltestdata\combined.conf");
+            
+            string text = System.IO.File.ReadAllText(@args[0]);
             var stream = new AntlrInputStream(text);
             var lexer = new DHCPDConfigLexer(stream);
             var tokens = new CommonTokenStream(lexer);
@@ -25,8 +25,10 @@ namespace DhcpdToMicrosoftCLI
             var tree = parser.config();
             var compiler = new DhcpdToMicrosoftCompiler();
             compiler.Visit(tree);
-
-    
+            StreamWriter file = new StreamWriter(@args[1], false, Encoding.Unicode);
+            string xml = compiler.CompileXML();
+            file.WriteLine(xml);
+            file.Close();
         }
     }
 }

@@ -12,6 +12,7 @@ MY: 'my';
 PARTNER: 'partner';
 AT: 'at';
 RPAREN: ')';
+EPOCH: 'epoch';
 LBRACE: '{';
 RBRACE: '}';
 HOST: 'host';
@@ -89,6 +90,7 @@ ColonSeparatedList: (STRING COLON)+ STRING;
 
 Date: [0-9][0-9][0-9][0-9] SLASH [0-9][0-9] SLASH  [0-9][0-9] ' ' [0-9][0-9] COLON [0-9][0-9] COLON [0-9][0-9] |
       [0-9][0-9] COLON [0-9][0-9] COLON [0-9][0-9] |
+      EPOCH NUMBER |
       NEVER;
 
 NUMBER: [0-9]+;

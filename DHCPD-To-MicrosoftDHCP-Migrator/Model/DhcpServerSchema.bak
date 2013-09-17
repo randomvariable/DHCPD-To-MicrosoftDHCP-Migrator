@@ -23,8 +23,8 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
-    [System.Xml.Serialization.XmlRootAttribute( IsNullable = false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer", IsNullable = false)]
     public partial class Classes
     {
 
@@ -50,7 +50,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class Class
     {
 
@@ -140,7 +140,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class StatelessStore
     {
 
@@ -182,23 +182,23 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class DHCPv6
     {
 
-        private Class[] classesField;
+        private Class[][] classesField;
 
-        private OptionDefinition[] optionDefinitionsField;
+        private OptionDefinition[][] optionDefinitionsField;
 
-        private OptValue[] optionValuesField;
+        private OptValue[][] optionValuesField;
 
         private StatelessStore[] statelessStoreField;
 
-        private ScopeIPv4[] scopesField;
+        private ScopeIPv4[][] scopesField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute(typeof(Class), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public Class[] Classes
+        public Class[][] Classes
         {
             get
             {
@@ -212,7 +212,7 @@ namespace DhcpdToMicrosoft.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute(typeof(OptionDefinition), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public OptionDefinition[] OptionDefinitions
+        public OptionDefinition[][] OptionDefinitions
         {
             get
             {
@@ -226,7 +226,7 @@ namespace DhcpdToMicrosoft.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute("OptionValue", typeof(OptValue), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public OptValue[] OptionValues
+        public OptValue[][] OptionValues
         {
             get
             {
@@ -254,7 +254,7 @@ namespace DhcpdToMicrosoft.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute("Scope", typeof(ScopeIPv4), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public ScopeIPv4[] Scopes
+        public ScopeIPv4[][] Scopes
         {
             get
             {
@@ -272,7 +272,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class OptionDefinition
     {
 
@@ -394,7 +394,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class OptionDefinitionDefaultValue
     {
 
@@ -420,7 +420,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class OptValue
     {
 
@@ -494,7 +494,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class OptValueValue
     {
 
@@ -520,7 +520,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class ScopeIPv4
     {
 
@@ -556,15 +556,15 @@ namespace DhcpdToMicrosoft.Model
 
         private string superScopeNameField;
 
-        private IPRange[] exclusionRangesField;
+        private IPRange[][] exclusionRangesField;
 
-        private Policy[] policiesField;
+        private Policy[][] policiesField;
 
-        private OptValue[] optionValuesField;
+        private OptValue[][] optionValuesField;
 
-        private IPv4Reservation[] reservationsField;
+        private IPv4Reservation[][] reservationsField;
 
-        private IPv4Lease[] leasesField;
+        private IPv4Lease[][] leasesField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -793,7 +793,7 @@ namespace DhcpdToMicrosoft.Model
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute(typeof(IPRange), IsNullable = false)]
-        public IPRange[] ExclusionRanges
+        public IPRange[][] ExclusionRanges
         {
             get
             {
@@ -807,7 +807,7 @@ namespace DhcpdToMicrosoft.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute(typeof(Policy), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public Policy[] Policies
+        public Policy[][] Policies
         {
             get
             {
@@ -821,7 +821,7 @@ namespace DhcpdToMicrosoft.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute("OptionValue", typeof(OptValue), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public OptValue[] OptionValues
+        public OptValue[][] OptionValues
         {
             get
             {
@@ -836,7 +836,7 @@ namespace DhcpdToMicrosoft.Model
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("Reservation", typeof(IPv4Reservation), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public IPv4Reservation[] Reservations
+        public IPv4Reservation[][] Reservations
         {
             get
             {
@@ -851,7 +851,7 @@ namespace DhcpdToMicrosoft.Model
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("Lease", typeof(IPv4Lease), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public IPv4Lease[] Leases
+        public IPv4Lease[][] Leases
         {
             get
             {
@@ -869,8 +869,8 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
-    [System.Xml.Serialization.XmlRootAttribute( IsNullable = false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer", IsNullable = false)]
     public partial class IPRange
     {
 
@@ -912,7 +912,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class Policy
     {
 
@@ -942,9 +942,9 @@ namespace DhcpdToMicrosoft.Model
 
         private PolicySubscriberId[] subscriberIdField;
 
-        private IPRange[] iPRangesField;
+        private IPRange[][] iPRangesField;
 
-        private OptValue[] optionValuesField;
+        private OptValue[][] optionValuesField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -1131,7 +1131,7 @@ namespace DhcpdToMicrosoft.Model
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute(typeof(IPRange), IsNullable = false)]
-        public IPRange[] IPRanges
+        public IPRange[][] IPRanges
         {
             get
             {
@@ -1145,7 +1145,7 @@ namespace DhcpdToMicrosoft.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute("OptionValue", typeof(OptValue), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public OptValue[] OptionValues
+        public OptValue[][] OptionValues
         {
             get
             {
@@ -1163,7 +1163,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class PolicyVendorClass
     {
 
@@ -1189,7 +1189,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class PolicyUserClass
     {
 
@@ -1215,7 +1215,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class PolicyMacAddress
     {
 
@@ -1241,7 +1241,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class PolicyClientId
     {
 
@@ -1267,7 +1267,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class PolicyRelayAgent
     {
 
@@ -1293,7 +1293,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class PolicyCircuitId
     {
 
@@ -1319,7 +1319,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class PolicyRemoteId
     {
 
@@ -1345,7 +1345,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class PolicySubscriberId
     {
 
@@ -1371,7 +1371,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class IPv4Reservation
     {
 
@@ -1385,7 +1385,7 @@ namespace DhcpdToMicrosoft.Model
 
         private string descriptionField;
 
-        private OptValue[] optionValuesField;
+        private OptValue[][] optionValuesField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -1459,7 +1459,7 @@ namespace DhcpdToMicrosoft.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute("OptionValue", typeof(OptValue), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public OptValue[] OptionValues
+        public OptValue[][] OptionValues
         {
             get
             {
@@ -1477,7 +1477,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class IPv4Lease
     {
 
@@ -1711,7 +1711,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class IPv4Filter
     {
 
@@ -1769,7 +1769,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class Filters
     {
 
@@ -1827,7 +1827,7 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
     public partial class DHCPv4
     {
 
@@ -1841,17 +1841,17 @@ namespace DhcpdToMicrosoft.Model
 
         private bool activatePoliciesFieldSpecified;
 
-        private Class[] classesField;
+        private Class[][] classesField;
 
-        private OptionDefinition[] optionDefinitionsField;
+        private OptionDefinition[][] optionDefinitionsField;
 
-        private Policy[] policiesField;
+        private Policy[][] policiesField;
 
-        private OptValue[] optionValuesField;
+        private OptValue[][] optionValuesField;
 
         private Filters[] filtersField;
 
-        private ScopeIPv4[] scopesField;
+        private ScopeIPv4[][] scopesField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified, DataType = "integer")]
@@ -1925,7 +1925,7 @@ namespace DhcpdToMicrosoft.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute(typeof(Class), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public Class[] Classes
+        public Class[][] Classes
         {
             get
             {
@@ -1939,7 +1939,7 @@ namespace DhcpdToMicrosoft.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute(typeof(OptionDefinition), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public OptionDefinition[] OptionDefinitions
+        public OptionDefinition[][] OptionDefinitions
         {
             get
             {
@@ -1953,7 +1953,7 @@ namespace DhcpdToMicrosoft.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute(typeof(Policy), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public Policy[] Policies
+        public Policy[][] Policies
         {
             get
             {
@@ -1967,7 +1967,7 @@ namespace DhcpdToMicrosoft.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute("OptionValue", typeof(OptValue), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public OptValue[] OptionValues
+        public OptValue[][] OptionValues
         {
             get
             {
@@ -1995,7 +1995,7 @@ namespace DhcpdToMicrosoft.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute("Scope", typeof(ScopeIPv4), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public ScopeIPv4[] Scopes
+        public ScopeIPv4[][] Scopes
         {
             get
             {
@@ -2013,8 +2013,8 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
-    [System.Xml.Serialization.XmlRootAttribute("Scopes",  IsNullable = false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
+    [System.Xml.Serialization.XmlRootAttribute("Scopes", Namespace = "http://schemas.microsoft.com/windows/DHCPServer", IsNullable = false)]
     public partial class v4Scopes
     {
 
@@ -2040,8 +2040,8 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
-    [System.Xml.Serialization.XmlRootAttribute( IsNullable = false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer", IsNullable = false)]
     public partial class Policies
     {
 
@@ -2067,8 +2067,8 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
-    [System.Xml.Serialization.XmlRootAttribute( IsNullable = false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer", IsNullable = false)]
     public partial class OptionValues
     {
 
@@ -2094,8 +2094,8 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
-    [System.Xml.Serialization.XmlRootAttribute( IsNullable = false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer", IsNullable = false)]
     public partial class OptionDefinitions
     {
 
@@ -2121,8 +2121,8 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute()]
-    [System.Xml.Serialization.XmlRootAttribute( IsNullable = false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer", IsNullable = false)]
     public partial class DHCPServer
     {
 
@@ -2196,8 +2196,8 @@ namespace DhcpdToMicrosoft.Model
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    [System.Xml.Serialization.XmlRootAttribute( IsNullable = false)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://schemas.microsoft.com/windows/DHCPServer")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://schemas.microsoft.com/windows/DHCPServer", IsNullable = false)]
     public partial class NewDataSet
     {
         partial class ScopesDataTable

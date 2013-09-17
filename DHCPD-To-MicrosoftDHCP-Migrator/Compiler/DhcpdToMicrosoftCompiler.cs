@@ -16,10 +16,13 @@ namespace DhcpdToMicrosoft.Compiler
     using DhcpdToMicrosoft.Utility;
     using System.Net;
     using NLog;
+    using Antlr4.Runtime;
+    using System.Xml;
+    using System.IO;
 
     public class DhcpdToMicrosoftCompiler : AbstractParseTreeVisitor<Object>, IDHCPDConfigVisitor<Object>
     {
-        private List<IPv4Lease> Leases;
+        private HashSet<IPv4Lease> Leases;
         private HashSet<IPv4Filter> Filters;
         private HashSet<IPv4Reservation> Reservations;
         private List<ScopeIPv4> Scopesv4;
@@ -34,6 +37,7 @@ namespace DhcpdToMicrosoft.Compiler
         private ParseTreeProperty<string> OptionDefinitionNames;
         private ParseTreeProperty<int> OptionIDs;
         private ParseTreeProperty<string> OptionTypes;
+        private ParseTreeProperty<string> Ipv4LeaseClientTypes;
         private ParseTreeProperty<bool> OptionMultivalued;
         private ParseTreeProperty<string> OptionDescriptions;
         private ParseTreeProperty<string> OptionVendorClasses;
@@ -98,14 +102,14 @@ namespace DhcpdToMicrosoft.Compiler
 
         public DhcpdToMicrosoftCompiler() :base()
         {
-            List<IPv4Lease> Leases;
+            Leases = new HashSet<IPv4Lease>();
              Filters = new HashSet<IPv4Filter>();
             Reservations = new HashSet<IPv4Reservation>();
             Scopesv4 = new List<ScopeIPv4>();
             List<IPRange> IpRanges;
             logger = LogManager.GetCurrentClassLogger(); 
             IPAddresses = new ParseTreeProperty<IPAddress>();    
-            
+            Ipv4LeaseClientTypes = new  ParseTreeProperty<string>() ;
             BindingStates = new ParseTreeProperty<string>();       
             ClassNames = new ParseTreeProperty<string>();       
             ClassTypes = new ParseTreeProperty<string>();       
@@ -176,18 +180,7 @@ namespace DhcpdToMicrosoft.Compiler
             Ipv4FilterDescriptions = new ParseTreeProperty<string>(); 
         }
 
-        private void CompileMsDhcp()
-        {
-            foreach(IPv4Lease lease in Leases)
-            {
 
-            }
-        }
-
-        private void ResolveScope()
-        {
-
-        }
 
         public Object VisitRangeLow6([NotNull] DHCPDConfigParser.RangeLow6Context context) { return VisitChildren(context); }
         public Object VisitNetmask([NotNull] DHCPDConfigParser.NetmaskContext context) {
@@ -201,10 +194,7 @@ namespace DhcpdToMicrosoft.Compiler
         }
         public Object VisitConfig([NotNull] DHCPDConfigParser.ConfigContext context)
         {
-            NewDataSet dataset = new NewDataSet();
-            List<XmlElementAttribute> itemList = new List<XmlElementAttribute>();
-            itemList.Add(VisitChildren(context) as XmlElementAttribute);
-            return dataset.ToString();           
+            return VisitChildren(context);
         }
 
   
@@ -224,16 +214,7 @@ namespace DhcpdToMicrosoft.Compiler
         public Object VisitStatement([NotNull] DHCPDConfigParser.StatementContext context) { return VisitChildren(context); }
         public Object VisitLease([NotNull] DHCPDConfigParser.LeaseContext context)
         { 
-            IPv4Lease lease = new IPv4Lease();
-        //    lease.IPAddress = IPAddresses.Get(context).ToString();
-          //  lease.AddressState = BindingStates.Get(context);
-//            lease.LeaseExpiryTime = DateTime.Parse(context.ExpiryDate);
-            //lease.ClientId = NormaliseMAC(context.ClientID);
-            //lease.NapCapable = false;
-            //lease.ClientType = "Dhcp";
-            //lease.NapStatus = "FullAccess";
-            //leases.Add(lease);
-            return lease.ToString();
+            return VisitChildren(context);
         }
             
             
@@ -291,6 +272,7 @@ namespace DhcpdToMicrosoft.Compiler
         {
             ScopeIPv4 scope = new ScopeIPv4();
             scope.ScopeId = context.subnet().GetText();
+            scope.Name = scope.ScopeId;
             scope.SubnetMask = context.netmask().GetText();
             try
             {
@@ -329,9 +311,27 @@ namespace DhcpdToMicrosoft.Compiler
         public Object VisitDate([NotNull] DHCPDConfigParser.DateContext context) { return VisitChildren(context); }
         public Object VisitTimestamp([NotNull] DHCPDConfigParser.TimestampContext context)
         {
+                RuleContext declaration = context.parent.parent.parent;
+                string endDateString = context.Date().GetText();
+                DateTime normalisedTime = DateTime.Parse(endDateString);
+                if (Ipv4LeaseExpiryTimes.Get(declaration) != null)
+                {
+                    if ((Ipv4LeaseExpiryTimes.Get(declaration) < normalisedTime) & (DateTime.Now < normalisedTime))
+                    {
+                        Ipv4LeaseExpiryTimes.RemoveFrom(declaration);
+                        Ipv4LeaseExpiryTimes.Put(declaration, normalisedTime);
+                    }
+                }
 
+            
             return VisitChildren(context);
         }
+
+        private string normaliseMac(string mac)
+        {
+           return mac.Replace(":", "-");
+        }
+
         public Object VisitHostDeclaration([NotNull] DHCPDConfigParser.HostDeclarationContext context)
         {
             IPv4Filter filter = new IPv4Filter();
@@ -339,7 +339,7 @@ namespace DhcpdToMicrosoft.Compiler
             List<ParserRuleContext> hardwareParameters = GetNestedChildren(context, new String[] { "StatementsContext", "StatementContext", "ParameterContext", "HardwareParameterContext" });
             if (hardwareParameters != null)
             {
-                filter.MacAddress = hardwareParameters.First().GetChild(2).GetText();
+                filter.MacAddress = normaliseMac( hardwareParameters.First().GetChild(2).GetText());
             }
             if (context.hostname().STRING() != null)
             {
@@ -347,13 +347,13 @@ namespace DhcpdToMicrosoft.Compiler
             }
             else
             {
-                filter.Description = filter.MacAddress;
+                filter.Description = normaliseMac(filter.MacAddress);
             }
             try
             {
                 if ((Filters.First(x => x.MacAddress == filter.MacAddress)) != null)
                 {
-                    logger.Warn("Duplicate MAC Address: " + filter.MacAddress);
+                    logger.Warn("Duplicate MAC Address: " + normaliseMac(filter.MacAddress));
                 }
                 else
                 {
@@ -396,7 +396,69 @@ namespace DhcpdToMicrosoft.Compiler
             return context.ip4Address().GetText();
         }
         public Object VisitParameter([NotNull] DHCPDConfigParser.ParameterContext context) { return VisitChildren(context); }
-        public Object VisitLeaseDeclaration([NotNull] DHCPDConfigParser.LeaseDeclarationContext context) { return VisitChildren(context); }
+        public Object VisitLeaseDeclaration([NotNull] DHCPDConfigParser.LeaseDeclarationContext context)
+        {
+            VisitChildren(context);
+            if (Ipv4LeaseExpiryTimes.Get(context) > DateTime.Now)
+            {
+                IPv4Lease lease = new IPv4Lease();
+                lease.IPAddress = context.leaseAddress().ip4Address().Ip4Address().GetText();
+                lease.LeaseExpiryTime = Ipv4LeaseExpiryTimes.Get(context).ToString("o");
+                lease.ClientId = Ipv4LeaseClientIds.Get(context);
+                lease.HostName = Ipv4LeaseHostnames.Get(context);
+                lease.NapStatus = "FullAccess";
+                lease.NapCapable = false;
+                lease.ClientType = Ipv4LeaseClientTypes.Get(context);
+                lease.AddressState = Ipv4LeaseAddressStates.Get(context);
+                if(String.IsNullOrEmpty(lease.ClientType))
+                {
+                    lease.ClientType="Unspecified";
+                }
+                if(String.IsNullOrEmpty(lease.DnsRegistration))
+                {
+                    lease.DnsRegistration = "NotApplicable";
+                }
+                if(String.IsNullOrEmpty(lease.DnsRR))
+                {
+                    lease.DnsRR="NoRegistration";
+                }
+                if (String.IsNullOrEmpty(lease.HostName))
+                {
+                    lease.HostName = lease.ClientId.Replace("-", "");
+                }
+                if (String.IsNullOrEmpty(lease.AddressState))
+                {
+                    lease.AddressState = "Active";
+                }
+                try
+                {
+
+                    if ((Leases.First(x => x.IPAddress == lease.IPAddress)) != null)
+                    {
+                        logger.Warn("Duplicate IP Address in lease: " + lease.IPAddress + " and MAC " + lease.ClientId + " with expiry time at " + (Leases.First(x => x.IPAddress == lease.IPAddress).LeaseExpiryTime));
+                        if(DateTime.Parse(Leases.First(x => x.IPAddress == lease.IPAddress).LeaseExpiryTime) < DateTime.Parse(lease.LeaseExpiryTime))
+                        {
+                            Leases.Remove(Leases.First(x => x.IPAddress == lease.IPAddress));
+                            Leases.Add(lease);
+                            logger.Debug("Replacement lease " + lease.IPAddress + " with hostname " + lease.HostName + " and MAC " + lease.ClientId + " expires later on " + lease.LeaseExpiryTime);
+                        }
+
+                    }
+                    else
+                    {
+                        Leases.Add(lease);
+                        logger.Debug("Lease " + lease.IPAddress + " with hostname " + lease.HostName + " and MAC " + lease.ClientId + " expires on " + lease.LeaseExpiryTime);
+                    }
+                }
+                catch
+                {
+                    Leases.Add(lease);
+                    logger.Debug("Lease " + lease.IPAddress + " with hostname " + lease.HostName + " and MAC " + lease.ClientId +  " expires on " + lease.LeaseExpiryTime);
+                }               
+                
+            }
+            return null;
+        }
         public Object VisitFailoverStateStatement([NotNull] DHCPDConfigParser.FailoverStateStatementContext context) { return VisitChildren(context); }
         public Object VisitStatements([NotNull] DHCPDConfigParser.StatementsContext context) { return VisitChildren(context); }
         public Object VisitFixedAddressParameter([NotNull] DHCPDConfigParser.FixedAddressParameterContext context) {
@@ -413,11 +475,107 @@ namespace DhcpdToMicrosoft.Compiler
         public Object VisitClassDeclaration([NotNull] DHCPDConfigParser.ClassDeclarationContext context) { return VisitChildren(context); }
         public Object VisitRangeHigh6([NotNull] DHCPDConfigParser.RangeHigh6Context context) { return VisitChildren(context); }
         public Object VisitIpAddrOrHostnames([NotNull] DHCPDConfigParser.IpAddrOrHostnamesContext context) { return VisitChildren(context); }
-        public Object VisitStartEnd([NotNull] DHCPDConfigParser.StartEndContext context) { return VisitChildren(context); }
-        public Object VisitLeaseParameter([NotNull] DHCPDConfigParser.LeaseParameterContext context) { return VisitChildren(context); }
+        public Object VisitStartEnd([NotNull] DHCPDConfigParser.StartEndContext context)
+        {
+
+    
+            if (context.ENDS()!=null)
+            {
+                RuleContext declaration = context.parent.parent.parent;
+                string endDateString = context.Date().GetText();
+                DateTime normalisedTime = DateTime.Parse(endDateString);
+                if(Ipv4LeaseExpiryTimes.Get(declaration) != null)
+                {
+                    if (Ipv4LeaseExpiryTimes.Get(declaration) < normalisedTime & (DateTime.Now < normalisedTime))
+                    {
+                        Ipv4LeaseExpiryTimes.RemoveFrom(declaration);
+                        Ipv4LeaseExpiryTimes.Put(declaration, normalisedTime);
+                    }
+                }
+            }
+
+
+            return VisitChildren(context); 
+        
+        }
+        public Object VisitLeaseParameter([NotNull] DHCPDConfigParser.LeaseParameterContext context)
+        {
+            if (context.CLIENT_HOSTNAME() != null)
+            {
+                string hostName = context.stringParameter().STRING().GetText();
+                Ipv4LeaseHostnames.Put(context.parent.parent, hostName);
+            }
+
+            if (context.hardwareParameter() != null)
+            {
+                Ipv4LeaseClientIds.Put(context.parent.parent,normaliseMac(context.hardwareParameter().ColonSeparatedList().GetText()));
+            }
+
+            return VisitChildren(context); 
+        
+        }
         public Object VisitPoolDeclaration([NotNull] DHCPDConfigParser.PoolDeclarationContext context) { return VisitChildren(context); }
         public Object VisitIp6Prefix([NotNull] DHCPDConfigParser.Ip6PrefixContext context) { return VisitChildren(context); }
         public Object VisitPeerStatement([NotNull] DHCPDConfigParser.PeerStatementContext context) { return VisitChildren(context); }
         public Object VisitFailoverStateDeclaration([NotNull] DHCPDConfigParser.FailoverStateDeclarationContext context) { return VisitChildren(context); }
+
+
+        public string CompileXML()
+        {
+            NewDataSet dataset = new NewDataSet();
+            List<XmlElementAttribute> itemList = new List<XmlElementAttribute>();
+            foreach (ScopeIPv4 scope in Scopesv4)
+            {
+                IPAddress scopeID = IPAddress.Parse(scope.ScopeId);
+                IPAddress subnetMask = IPAddress.Parse(scope.SubnetMask);
+                List<IPv4Reservation> scopeReservations = new List<IPv4Reservation>();
+                foreach (IPv4Reservation reservation in Reservations)
+                {
+                    IPAddress ipAddress = IPAddress.Parse(reservation.IPAddress);
+                    if(ipAddress.IsInSameSubnet(scopeID,subnetMask))
+                    {
+                        scopeReservations.Add(reservation);
+                    }
+                }
+                scope.Reservations = scopeReservations.ToArray();
+                List<IPv4Lease> scopeLeases = new List<IPv4Lease>();
+                foreach (IPv4Lease lease in Leases)
+                {
+                    IPAddress ipAddress = IPAddress.Parse(lease.IPAddress);
+                    if (ipAddress.IsInSameSubnet(scopeID, subnetMask))
+                    {
+                        lease.ScopeId = scope.ScopeId;
+                        scopeLeases.Add(lease);
+                    }
+                }
+                scope.Leases = scopeLeases.ToArray();
+            }
+            //dataset
+
+            DHCPServer server = new DHCPServer();
+            server.IPv4 = new DHCPv4();
+            server.IPv6 = new DHCPv6();
+            Filters[] allFilters = new Model.Filters[1];
+            allFilters[0] = new Model.Filters();
+            allFilters[0].Filter = Filters.ToArray();
+            allFilters[0].Allow = true;
+            allFilters[0].Deny = false;
+            server.IPv4.Filters = allFilters;
+            server.IPv4.NapEnabled = false;
+            server.MajorVersion = "6";
+            server.MinorVersion = "2";
+            server.IPv4.ConflictDetectionAttempts = "1";
+            server.IPv4.NpsUnreachableAction = "Full";
+            server.IPv4.Scopes = Scopesv4.ToArray();
+            dataset = new NewDataSet();
+            
+            DHCPServer[] serverArray = new DHCPServer[1];
+            serverArray[0] = server;
+            dataset.Items = serverArray;
+            TextWriter writer = new StringWriter();
+            XmlSerializer scopeSerializer = new XmlSerializer(typeof(DHCPServer));
+            scopeSerializer.Serialize(writer, server);
+            return (writer.ToString());
+        }
     }
 }

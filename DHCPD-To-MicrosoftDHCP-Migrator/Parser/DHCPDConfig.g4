@@ -105,7 +105,8 @@ hostnameOrIpAddress: hostname | ip4Address;
 
 timestamp: (TSTP | TSFP | ATSFP | CLTT) NUMBER Date;
 
-startEnd: (STARTS | ENDS) NUMBER Date ;
+startEnd: (STARTS | ENDS) NUMBER Date |
+           (STARTS | ENDS) Date;
            
 
 
