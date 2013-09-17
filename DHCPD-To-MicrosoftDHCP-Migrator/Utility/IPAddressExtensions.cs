@@ -1,10 +1,15 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Net;
+using System.Linq;
+using System.Collections.Generic;
+using NLog;
 
 namespace DhcpdToMicrosoft.Utility
 {
     public static class IPAddressExtensions
     {
+  
         public static IPAddress GetBroadcastAddress(this IPAddress address, IPAddress subnetMask)
         {
             byte[] ipAdressBytes = address.GetAddressBytes();
@@ -39,11 +44,38 @@ namespace DhcpdToMicrosoft.Utility
 
         }
 
+        public static IDictionary<IPAddress, IPAddress> ExtractContiguousRanges(IEnumerable<IPAddress> IPs)
+        {
+            Logger logger = LogManager.GetCurrentClassLogger(); 
+            IDictionary<IPAddress, IPAddress> ranges = new Dictionary<IPAddress, IPAddress>();
+            HashSet<uint> IPNumbers = new HashSet<uint>();
+            foreach (IPAddress address in IPs)
+            {
+                logger.Debug("For exclusion " + address.ToUint());
+                IPNumbers.Add(address.ToUint());
+            }
+            IEnumerable<IEnumerable<uint>> IPNumberGroups = IPNumbers.Distinct()
+                .GroupBy(num => NumberUtils.Range(num, uint.MaxValue - num + 1)
+                .TakeWhile(IPNumbers.Contains).Last())
+                .Where(seq => seq.Count() >= 3)
+                .Select(seq => seq.OrderBy(num => num));
+
+            foreach (IEnumerable<uint> group in IPNumberGroups)
+            {
+                uint low = group.Min();
+                uint high = group.Max();
+                IPAddress rangeLow = parseUint(low);
+                IPAddress rangeHigh = parseUint(high);
+                logger.Debug("Selected for exclusion: " + rangeLow + " to " + rangeHigh);
+                ranges.Add(rangeLow, rangeHigh);
+            }
+            return ranges;
+
+        }
+
         public static IPAddress GetFirstUsuableAddress(this IPAddress address)
         {
             byte[] ip = address.GetAddressBytes();
-            if (ip[3] == 0)
-            {
                 ip[3]++;
                 if (ip[3] == 0)
                 {
@@ -55,8 +87,62 @@ namespace DhcpdToMicrosoft.Utility
                             ip[0]++;
                     }
                 }
-            }
+
             return new IPAddress(ip);
+        }
+
+        public static uint ToUint(this IPAddress address)
+        {
+            byte[] ipBytes = address.GetAddressBytes();
+            ByteConverter bConvert = new ByteConverter();
+            uint ipUint = 0;
+
+            int shift = 24; // indicates number of bits left for shifting
+            foreach (byte b in ipBytes)
+            {
+                if (ipUint == 0)
+                {
+                    ipUint = (uint)bConvert.ConvertTo(b, typeof(uint)) << shift;
+                    shift -= 8;
+                    continue;
+                }
+
+                if (shift >= 8)
+                    ipUint += (uint)bConvert.ConvertTo(b, typeof(uint)) << shift;
+                else
+                    ipUint += (uint)bConvert.ConvertTo(b, typeof(uint));
+
+                shift -= 8;
+            }
+
+            return ipUint;
+        }
+
+        /* reverse byte order in array */
+        public static uint reverseBytesArray(uint ip)
+        {
+            byte[] bytes = BitConverter.GetBytes(ip);
+            bytes = bytes.Reverse().ToArray();
+            return (uint)BitConverter.ToInt32(bytes, 0);
+        }
+
+        public static IPAddress parseUint(uint ip)
+        {
+            uint reverseUint = reverseBytesArray(ip);
+            byte[] bytes = BitConverter.GetBytes(reverseUint);
+
+            return new IPAddress(bytes);
+        }
+
+        public static IEnumerable<IPAddress> GetIPRange(IPAddress startIP, IPAddress endIP)
+        {
+            uint sIP = startIP.ToUint();
+            uint eIP = endIP.ToUint();
+            while (sIP <= eIP)
+            {
+                yield return new IPAddress(reverseBytesArray(sIP));
+                sIP++;
+            }
         }
 
         public static IPAddress GetNetworkAddress(this IPAddress address, IPAddress subnetMask)

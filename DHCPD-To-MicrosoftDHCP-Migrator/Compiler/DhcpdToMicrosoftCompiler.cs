@@ -26,9 +26,7 @@ namespace DhcpdToMicrosoft.Compiler
         private HashSet<IPv4Filter> Filters;
         private HashSet<IPv4Reservation> Reservations;
         private List<ScopeIPv4> Scopesv4;
-        private List<IPRange> IpRanges;
-        private ParseTreeProperty<IPAddress> IPAddresses;
-        private ParseTreeProperty<string> BindingStates;
+        
         private ParseTreeProperty<string> ClassNames;
         private ParseTreeProperty<string> ClassTypes;
         private ParseTreeProperty<string> ClassData;
@@ -58,6 +56,8 @@ namespace DhcpdToMicrosoft.Compiler
         private ParseTreeProperty<string> PolicySubscriberIds;
         private ParseTreeProperty<IPAddress> IpRangeStartRanges;
         private ParseTreeProperty<IPAddress> IpRangeEndRanges;
+        private IEnumerable<IPAddress> ExcludedIPs;
+        private IEnumerable<IPAddress> IncludedIPs;
         private ParseTreeProperty<int> OptValueOptionIds;
         private ParseTreeProperty<string> OptValueOptionVendorClassStrings;
         private ParseTreeProperty<string> OptValueOptionUserClassStrings;
@@ -148,7 +148,9 @@ namespace DhcpdToMicrosoft.Compiler
             ScopeIPv4Names = new ParseTreeProperty<string>();       
             ScopeIPv4SubnetMasks = new ParseTreeProperty<string>();       
             ScopeIPv4StartRanges = new ParseTreeProperty<string>();       
-            ScopeIPv4EndRanges = new ParseTreeProperty<string>();       
+            ScopeIPv4EndRanges = new ParseTreeProperty<string>();
+            ExcludedIPs = new HashSet<IPAddress>();
+            IncludedIPs = new HashSet<IPAddress>();
             ScopeIPv4LeaseDurations = new ParseTreeProperty<string>();       
             ScopeIPv4States = new ParseTreeProperty<string>();       
             ScopeIPv4Types = new ParseTreeProperty<string>();       
@@ -202,13 +204,19 @@ namespace DhcpdToMicrosoft.Compiler
         public Object VisitDeclaration([NotNull] DHCPDConfigParser.DeclarationContext context) { return VisitChildren(context); }
         public Object VisitFixedPrefix6([NotNull] DHCPDConfigParser.FixedPrefix6Context context) { return VisitChildren(context); }
         public Object VisitHostname([NotNull] DHCPDConfigParser.HostnameContext context) { return VisitChildren(context); }
-        public Object VisitAddressRangeDeclaration([NotNull] DHCPDConfigParser.AddressRangeDeclarationContext context) { return VisitChildren(context); }
+        public Object VisitAddressRangeDeclaration([NotNull] DHCPDConfigParser.AddressRangeDeclarationContext context)
+        {
+            IPAddress low = IPAddress.Parse((context.rangeLow().ip4Address().Ip4Address().GetText()));
+            IPAddress high = IPAddress.Parse((context.rangeHigh().ip4Address().Ip4Address().GetText()));
+            IEnumerable<IPAddress> rangeIncludedIPs = Utility.IPAddressExtensions.GetIPRange(low, high);
+            IncludedIPs = IncludedIPs.Concat(rangeIncludedIPs);
+            return VisitChildren(context); 
+        }
         public Object VisitAddressRange6Declaration([NotNull] DHCPDConfigParser.AddressRange6DeclarationContext context) { return VisitChildren(context); }
         public Object VisitLeaseAddress([NotNull] DHCPDConfigParser.LeaseAddressContext context) { return VisitChildren(context); }
         public Object VisitRangeLow([NotNull] DHCPDConfigParser.RangeLowContext context) { return VisitChildren(context); }
         public Object VisitIp4Address([NotNull] DHCPDConfigParser.Ip4AddressContext context)
         {
-            
             return context.Ip4Address().GetText();
         }
         public Object VisitStatement([NotNull] DHCPDConfigParser.StatementContext context) { return VisitChildren(context); }
@@ -286,8 +294,12 @@ namespace DhcpdToMicrosoft.Compiler
             catch
             {
             }
-            scope.StartRange = IPAddress.Parse(scope.ScopeId).GetFirstUsuableAddress().ToString();
-            scope.EndRange =  (IPAddress.Parse(scope.ScopeId).GetLastAddress(IPAddress.Parse(scope.SubnetMask))).ToString();
+            IPAddress startRange = IPAddress.Parse(scope.ScopeId).GetFirstUsuableAddress();
+            IPAddress endRange = (IPAddress.Parse(scope.ScopeId).GetLastAddress(IPAddress.Parse(scope.SubnetMask)));
+            scope.StartRange = startRange.ToString();
+            scope.EndRange =  endRange.ToString();
+            IEnumerable<IPAddress> subnetExcludedIPs = IPAddressExtensions.GetIPRange(startRange,endRange);
+            ExcludedIPs = ExcludedIPs.Concat(subnetExcludedIPs);
             scope.State = "Active";
             scope.MaxBootpClients = "4294967295";
             scope.LeaseDuration = "600";
@@ -528,6 +540,10 @@ namespace DhcpdToMicrosoft.Compiler
         {
             NewDataSet dataset = new NewDataSet();
             List<XmlElementAttribute> itemList = new List<XmlElementAttribute>();
+
+            IEnumerable<IPAddress> fullExclusions = ExcludedIPs.Except(IncludedIPs);
+            IDictionary<IPAddress, IPAddress> exclusionRanges = IPAddressExtensions.ExtractContiguousRanges(fullExclusions);
+
             foreach (ScopeIPv4 scope in Scopesv4)
             {
                 IPAddress scopeID = IPAddress.Parse(scope.ScopeId);
@@ -553,6 +569,15 @@ namespace DhcpdToMicrosoft.Compiler
                     }
                 }
                 scope.Leases = scopeLeases.ToArray();
+                HashSet<IPRange> scopeExclusions = new HashSet<IPRange>();
+                foreach (KeyValuePair<IPAddress, IPAddress> dict in (exclusionRanges.Where(x => x.Key.IsInSameSubnet(scopeID, subnetMask))))
+                {
+                    IPRange range = new IPRange();
+                    range.StartRange = dict.Key.ToString();
+                    range.EndRange = dict.Value.ToString();
+                    scopeExclusions.Add(range);
+                }
+                scope.ExclusionRanges = scopeExclusions.ToArray();
             }
             //dataset
 
