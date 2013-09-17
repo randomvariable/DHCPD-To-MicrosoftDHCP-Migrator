@@ -1,0 +1,203 @@
+
+
+
+authoritative;
+ping-check true;
+default-lease-time 86400;
+max-lease-time 2592000;
+min-lease-time 86400;
+
+class "DENY"
+{
+	option routers 10.2.232.34;
+    match hardware;
+	
+}
+option space SUNW;
+       option SUNW.server-address code 2 = ip-address;
+       option SUNW.server-name code 3 = text;
+       option SUNW.root-path code 4 = text;
+
+
+class "vendor-classes" {
+         match option vendor-class-identifier;
+       }
+
+       option SUNW.server-address 172.17.65.1;
+       option SUNW.server-name "sundhcp-server17-1";
+
+       subclass "vendor-classes" "SUNW.Ultra-5_10" {
+         vendor-option-space SUNW;
+         option SUNW.root-path "/export/root/sparc";
+       }
+
+       subclass "vendor-classes" "SUNW.i86pc" {
+         vendor-option-space SUNW;
+         option SUNW.root-path "/export/root/i86pc";
+       }
+
+
+
+
+
+subclass "DENY" 01:00:0D:60:F8:EB:F7     
+{
+	option routers 10.189.7.130;
+}
+
+
+subclass "DENY" 01:00:0D:60:F8:EB:F7;
+
+subclass "DENY" 01:00:1E:68:8B:35:A7;
+
+subclass "DENY" 01:00:03:FF:4F:90:14;
+
+subclass "DENY" 01:00:0D:88:36:83:C4;
+
+host host688135
+{
+	
+    hardware ethernet 00:01:E6:4C:BC:BC;
+    fixed-address 10.189.9.34;
+    update-optimization false;
+    ping-check true;
+    dynamic-bootp-lease-length 86400;
+    option domain-name-servers 10.204.1.1, 10.204.31.163, 10.204.1.2, 10.204.1.3;
+    option routers 10.189.7.126;
+	option cable-labs.tsp-kerberos-realm-name random;
+}
+host host688137
+{
+    hardware ethernet 00:18:FE:A7:94:8A;
+    fixed-address 10.189.9.75;
+    update-optimization false;
+    ping-check true;
+    dynamic-bootp-lease-length 86400;
+    option domain-name-servers 10.204.1.1, 10.204.31.163, 10.204.1.2, 10.204.1.3;
+    option routers 10.189.7.126;
+}
+
+subnet 10.189.9.0 netmask 255.255.255.128
+{
+    option subnet-mask 255.255.255.128;
+    option broadcast-address 10.189.9.127;
+    update-optimization false;
+    ping-check true;
+    dynamic-bootp-lease-length 86400;
+    option domain-name-servers 10.204.1.1, 10.204.31.163, 10.204.1.2, 10.204.1.3;
+    option routers 10.189.9.126;
+    pool
+    {
+		allow members of "vendor-classes"
+		deny members of "DENY";
+		option domain-name-servers 10.205.12.23;
+        range 0 10.189.9.1 10.189.9.99;
+    }
+
+}
+subnet 10.189.10.0 netmask 255.255.255.128
+{
+    option subnet-mask 255.255.255.128;
+    option broadcast-address 10.189.10.127;
+    update-optimization false;
+    ping-check true;
+    dynamic-bootp-lease-length 86400;
+    option domain-name-servers 10.204.1.1, 10.204.31.163, 10.204.1.2, 10.204.1.3;
+    option routers 10.189.10.126;
+    pool
+    {
+
+		deny members of "DENY";
+
+        range 10.189.10.1 10.189.10.7;
+        range 10.189.10.9 10.189.10.56;
+        range 10.189.10.64;
+    }
+
+}
+subnet 10.189.11.0 netmask 255.255.255.0
+{
+    option subnet-mask 255.255.255.0;
+    option broadcast-address 10.189.11.255;
+    update-optimization false;
+    ping-check true;
+    dynamic-bootp-lease-length 86400;
+    option domain-name-servers 10.204.1.1, 10.204.31.163, 10.204.1.2, 10.204.1.3;
+    option routers 10.189.11.254;
+    pool
+    {
+
+       
+		deny members of "DENY";
+        range 10.189.11.11 10.189.11.99;
+    }
+
+}
+subnet 10.200.0.0 netmask 255.255.248.0
+{
+    option subnet-mask 255.255.248.0;
+    option broadcast-address 10.200.7.255;
+    update-optimization false;
+    ping-check true;
+    dynamic-bootp-lease-length 86400;
+    option domain-name-servers 10.204.1.1;
+    option routers 10.200.3.254;
+    pool
+    {
+
+        
+		deny members of "DENY";
+		option broadcast-address 10.190.2.12;
+        range 10.200.0.1 10.200.3.253;
+    }
+
+    pool
+    {
+
+        
+		allow members of "vendor-classes"
+        range 10.200.3.255 10.200.4.126;
+    }
+
+}
+
+shared-network Shared393240
+{
+	
+        subnet 10.200.47.0 netmask 255.255.255.0
+    {
+        option subnet-mask 255.255.255.0;
+        option broadcast-address 10.200.47.255;
+        update-optimization false;
+        ping-check true;
+        dynamic-bootp-lease-length 86400;
+        option domain-name-servers 10.204.1.1;
+        option routers 10.200.3.254;
+        pool
+        {
+
+            
+
+            range 10.200.47.1 10.200.47.20;
+        }
+
+    }
+        subnet 10.200.48.0 netmask 255.255.255.0
+    {
+        option subnet-mask 255.255.255.0;
+        option broadcast-address 10.200.48.255;
+        update-optimization false;
+        ping-check true;
+        dynamic-bootp-lease-length 86400;
+        option domain-name-servers 10.204.1.1;
+        option routers 10.200.3.254;
+        pool
+        {
+
+            
+
+            range 10.200.48.1 10.200.48.20;
+        }
+
+    }
+}

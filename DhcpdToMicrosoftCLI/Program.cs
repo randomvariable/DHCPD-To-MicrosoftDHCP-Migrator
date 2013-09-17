@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Antlr4.Runtime.Tree;
 using System.IO;
-
+using DhcpdToMicrosoft.Parser;
+using Antlr4.Runtime;
+using DhcpdToMicrosoft.Compiler;
+using NLog;
 
 namespace DhcpdToMicrosoftCLI
 {
@@ -13,6 +16,15 @@ namespace DhcpdToMicrosoftCLI
     {
         static void Main(string[] args)
         {
+
+            string text = System.IO.File.ReadAllText(@"I:\Work\DHCPD-To-MicrosoftDHCP-Migrator\ucltestdata\combined.conf");
+            var stream = new AntlrInputStream(text);
+            var lexer = new DHCPDConfigLexer(stream);
+            var tokens = new CommonTokenStream(lexer);
+            var parser = new DHCPDConfigParser(tokens);
+            var tree = parser.config();
+            var compiler = new DhcpdToMicrosoftCompiler();
+            compiler.Visit(tree);
 
     
         }

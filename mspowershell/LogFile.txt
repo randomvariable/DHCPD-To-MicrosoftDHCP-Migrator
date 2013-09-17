@@ -1,0 +1,1016 @@
+Log File for ISC DHCP Server Migration to Microsoft DHCP Server
+Parsing Begins
+-------------------------------------------------
+new option space added: cable-labs
+cable-labs-encapsulation code: Encapsulated not supported
+option definition not added
+new option space added: SUNW
+the command authoritative is not supported by the Microsoft DHCP server
+The command ddns-updates has not been used to configure your server and has been ignored!
+Group Statement Encountered
+The command ddns-updates has not been used to configure your server and has been ignored!
+Subnet 10.20.0.0 netmask 255.255.0.0
+Subnet 10.21.69.0 netmask 255.255.255.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Class vendor-classes is now being parsed
+Subclass whose class is vendor-classes and match value is SUNW.Ultra-5_10 is now being parsed
+Subclass whose class is vendor-classes and match value is SUNW.i86pc is now being parsed
+Subnet 10.21.29.0 netmask 255.255.255.0
+Subnet 10.21.100.0 netmask 255.255.252.0
+Host E-XE7760_02PS is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.101.11
+Host GD4240n is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.101.12
+Host WorkCentre133 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.101.13
+Host PRNO-103-65 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.103.65
+Host noriega.rimando is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.100.37
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.21.104.0 netmask 255.255.252.0
+Host HP3505_2 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.105.11
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.21.124.0 netmask 255.255.252.0
+Host FE423694 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.124.21
+Host prno-125-094 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.125.94
+Host prno-127-090 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.127.90
+Host prno-126-092 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.126.92
+Host NPI1014DA.fe.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.126.87
+Host 10.21.127.85 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.127.85
+Host NPI108724.fe.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.125.89
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.21.128.0 netmask 255.255.252.0
+Host FE420758 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.130.245
+Host NPI1A1CC9.fe.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.129.145
+Host NPI10B798.fe.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.131.144
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.21.108.0 netmask 255.255.252.0
+Host Mac_PC is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.109.96
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.21.112.0 netmask 255.255.252.0
+Host FE421144 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.113.21
+Host ERNOL-Q1001251 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.114.141
+Host ERNOL-Q1002931 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.113.102
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.21.16.0 netmask 255.255.255.0
+Subnet 10.21.15.0 netmask 255.255.255.0
+Subnet 10.21.148.0 netmask 255.255.252.0
+Host FE424735 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.150.175
+Host FE424733 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.149.180
+Host RNOWDWGKCF1 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.151.193
+Host PRNO-149-132.is.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.149.132
+Host ERNOW-Q1001404 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.151.118
+Host ERNOW-Q1002357 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.148.31
+Host ERNOW-Q1000395 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.148.32
+Host ernow-q1002353 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.148.33
+Host fe415677 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.148.34
+Host fe424681 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.148.35
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.21.156.0 netmask 255.255.252.0
+Host FE418633 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.157.10
+Host ERNOW-Q0422269 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.157.11
+Host ERNOW-Q1000837 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.157.12
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.21.160.0 netmask 255.255.252.0
+Host FE424682 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.161.27
+Host FE426091 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.161.31
+Host ERNOW-Q0410120 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.161.10
+Host ERNOW-Q0411162 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.161.11
+Host ERNOW-Q0418815 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.161.12
+Host ERNOW-Q0428810 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.161.13
+Host ERNOW-Q0428811 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.161.15
+Host ERNOW-Q0428812 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.161.17
+Host FE412786 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.161.18
+Host FE415649 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.161.19
+Host ERNOW-Q0418920 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.161.20
+Host FE419599 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.161.21
+Host FE422844 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.161.24
+Host FE422845 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.161.25
+Host FE424680 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.161.26
+Host FE425956 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.161.29
+Host ERNOW-Q0419528 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.161.16
+Host FE417177 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.161.14
+Host ERNOW-Q0415678 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.160.31
+Host ERNOW-Q1002355 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.160.32
+Host FE418293 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.160.33
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.21.116.0 netmask 255.255.252.0
+Host AVP115 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.116.213
+Host FE414522 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.118.247
+Host ERNOW-Q1000084 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.118.248
+Host FE424732 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.117.11
+Host E-HP5100_05 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.117.12
+Host ERNOW-Q0421154 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.118.208
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.21.120.0 netmask 255.255.252.0
+Host FE423956 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.121.10
+Host FE413091 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.123.137
+Host HP4300_1 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.120.17
+Host E-HP9000_05 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.121.11
+Host FE421170 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.120.189
+Host ERNOW-Q1000080 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.121.21
+Host 10.21.121.209 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.121.209
+Host FE420115.fe.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.122.73
+Host ERNOW-Q0426631 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.120.22
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.21.132.0 netmask 255.255.252.0
+Host ERNOW-Q0423960 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.133.211
+Host fe418595.fe.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.132.175
+Host ERNOW-Q0424759.fe.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.133.210
+Host sam.delaney is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.132.176
+Host CERNOW-Q0428498 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.132.119
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.21.136.0 netmask 255.255.252.0
+Host IGTEGM-QSNGFD4K.fe.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.138.81
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.21.140.0 netmask 255.255.252.0
+Host ernow-q1001633 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.143.249
+Host FE422833 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.143.250
+Host HP4600n is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.141.10
+Host ERNOW-01001630.fe.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.142.212
+Host Lowrey.Deborah is now being parsed
+hardware statement parsed
+fixed address parsed: 10.21.143.205
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.21.224.0 netmask 255.255.224.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.21.19.0 netmask 255.255.255.0
+Subnet 10.21.180.0 netmask 255.255.255.0
+Subnet 10.223.28.0 netmask 255.255.252.0
+Host AWBuild03 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.223.29.10
+Host AWBuild04 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.223.29.11
+Host CLASW-Q1000607 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.223.31.233
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.223.32.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.223.48.0 netmask 255.255.252.0
+Host LASW0789004 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.223.48.11
+Host Unknown-PC is now being parsed
+hardware statement parsed
+fixed address parsed: 10.223.49.11
+Host Unknown-EGM is now being parsed
+hardware statement parsed
+fixed address parsed: 10.223.49.12
+Host AVP_Machine.fe.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.223.51.157
+Host CLASW-Q1002037 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.223.50.151
+Host Unknown-EGM02 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.223.49.13
+Host ELASW-Q1001245 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.223.49.14
+Host ERNOW-Q0426629 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.223.48.12
+Host CVOW1110001.is.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.223.51.233
+Host CLASW-Q1002306 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.223.51.223
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.223.52.0 netmask 255.255.252.0
+Host PLAS-054-180 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.223.54.180
+Host LASW0786090 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.223.55.228
+Host ELASW-Q0426613 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.223.52.51
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.223.64.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.223.68.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.223.44.0 netmask 255.255.252.0
+Host CLASW-Q0419661 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.223.47.224
+Host elasw-q0423601 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.223.46.243
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.223.12.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.4.0 netmask 255.255.252.0
+Host E-HP9050_07 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.5.12
+Host E-XE7750_03 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.5.13
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.144.0 netmask 255.255.252.0
+Host E-HP2420_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.145.11
+Host E-XE7750_02 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.145.12
+Host FE413824 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.145.21
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.148.0 netmask 255.255.252.0
+Host ERNOL-1001828 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.151.190
+Host 10.213.149.191 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.149.191
+Host 10.213.150.190 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.150.190
+Host ERNOW-Q0424733.fe.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.150.189
+Host 10.213.149.197 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.149.197
+Host RNOLJBW8JF1 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.151.185
+Host ERNOW-Q1000815.fe.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.151.209
+Host CRNOL-Q1001734 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.150.192
+Host arneson.jeff is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.150.246
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.136.0 netmask 255.255.252.0
+Host std1_rno_09pcl6 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.137.11
+Host ERNOW-Q1001084 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.139.165
+Host PRNO-137-233 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.137.233
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.140.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.72.0 netmask 255.255.252.0
+Host E-RI2035_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.73.11
+Host E-HP9000_03 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.73.12
+Host E-HP8150_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.73.13
+Host E-HP4100_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.73.14
+Host CRNOW-Q0423829 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.73.21
+Host rnoeftd412116 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.73.22
+Host rnoeftd411081 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.73.23
+Host CRNOL-Q1000034 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.73.24
+Host ERNOW-Q0423765 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.74.236
+Host CRNOW-Q0423746 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.74.225
+Host CRNOW-Q1000546 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.73.129
+Host sperrypc is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.72.251
+Host crnow-q0423716 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.72.253
+Host rnonasw420855 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.75.223
+Host rnoeftl423876 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.75.163
+Host CRNOW-Q0417867 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.73.232
+Host RNOL330WBG1 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.73.120
+Host RNONASW423755.fe.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.73.233
+Host CRNOW-Q0420858 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.74.241
+Host tribendu.EGM is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.72.101
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.36.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.60.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.48.0 netmask 255.255.252.0
+Host E-HP2550_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.49.11
+Host E-HP2550_02 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.49.12
+Host E-HP3600_03 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.49.13
+Host E-HP3600_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.49.14
+Host E-HP9050_03 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.49.15
+Host E-HP3505_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.49.16
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.24.0 netmask 255.255.252.0
+Host E-HP5100_02 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.25.11
+Host E-OCETDS600_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.25.12
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.0.0 netmask 255.255.252.0
+Host prno_02_208.is.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.2.208
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.12.0 netmask 255.255.252.0
+Host E-OCETDS600_04 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.13.11
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.84.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.96.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.108.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.132.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.120.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.100.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.112.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.8.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.124.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.88.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.76.0 netmask 255.255.252.0
+Host E-HP4700_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.77.11
+Host rnowbmjz2f1 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.77.21
+Host Edsall_Ethan.is.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.77.77
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.16.0 netmask 255.255.252.0
+Host E-XE7700_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.17.11
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.64.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.28.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.52.0 netmask 255.255.252.0
+Host E-HP9000_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.53.12
+Host E-HP2505_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.53.13
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.40.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.44.0 netmask 255.255.252.0
+Host E-XE7760_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.11
+Host E-XE3250_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.12
+Host E-HP9000_04 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.13
+Host E-HP5500_02 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.14
+Host E-HP5100_03 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.15
+Host E-OCETDS600_02 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.16
+Host E-OCETDS600_03 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.17
+Host E-MN330_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.18
+Host E-HP3600_04 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.19
+Host E-HP3600_02 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.20
+Host E-HP9050_06 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.21
+Host E-HP9050_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.22
+Host E-HP9050_02 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.23
+Host E-HP9050_04 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.24
+Host E-HP9050_05 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.25
+Host E-HP3505_02 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.26
+Host E-HP3505_03 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.27
+Host E-HP2525_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.28
+Host E-HP5100_04 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.45.29
+Host Tandberg-1700-WMcMaster is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.46.157
+Host PRNO-47-146.is.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.47.146
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.20.0 netmask 255.255.252.0
+Host E-HP5100_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.21.11
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.32.0 netmask 255.255.252.0
+Host PRNO-34-254.is.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.34.254
+Host PRNO-35-241.is.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.35.241
+Host prno-33-241.is.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.33.241
+Host PRNO_35_219.is.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.35.219
+Host prno-35-216.is.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.35.216
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.56.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.104.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.68.0 netmask 255.255.252.0
+Host E-XE7750_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.69.11
+Host E-HP9000_02 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.69.12
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.92.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.80.0 netmask 255.255.252.0
+Host E-HP4300_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.81.11
+Host E-HP2430_01 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.81.12
+Host E-HP2430_02 is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.81.13
+Host NPIFD3AB3.fe.ad.igt.com is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.82.188
+Host BlueDude-PC is now being parsed
+hardware statement parsed
+fixed address parsed: 10.213.82.185
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.116.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.213.128.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.223.60.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+Subnet 10.21.28.0 netmask 255.255.255.0
+Subnet 10.223.84.0 netmask 255.255.252.0
+The command update-static-leases has not been used to configure your server and has been ignored!
+PARSING ENDS HERE
+------------------------------------
+Shared Networks and Groups are now being removed from the network topology
+------------------------------------
+shared networks and groups have been removed from the network topology
+Properties of classes are now being migrated to subclasses
+Properties of classes have been migrated to subclasses
+------------------------------------------------------
+Reservations are now being set into the correct scopes
+------------------------------------------------------
+Reservations are now set into the correct scopes
+-------------------------------------------------
+Exclusions are now being found
+-------------------------------------------------
+10.21.69.2-10.21.69.19 has been added
+10.21.69.250-10.21.69.253 has been added
+10.21.29.2-10.21.29.5 has been added
+10.21.29.250-10.21.29.253 has been added
+10.21.100.2-10.21.101.0 has been added
+10.21.101.11-10.21.101.13 has been added
+10.21.103.65-10.21.103.65 has been added
+10.21.104.2-10.21.105.0 has been added
+10.21.105.11-10.21.105.11 has been added
+10.21.124.2-10.21.125.0 has been added
+10.21.125.89-10.21.125.89 has been added
+10.21.125.94-10.21.125.94 has been added
+10.21.126.87-10.21.126.87 has been added
+10.21.126.92-10.21.126.92 has been added
+10.21.127.85-10.21.127.85 has been added
+10.21.127.90-10.21.127.90 has been added
+10.21.128.2-10.21.129.0 has been added
+10.21.129.145-10.21.129.145 has been added
+10.21.130.245-10.21.130.245 has been added
+10.21.131.144-10.21.131.144 has been added
+10.21.108.2-10.21.109.0 has been added
+10.21.109.96-10.21.109.96 has been added
+10.21.112.2-10.21.113.0 has been added
+10.21.113.21-10.21.113.21 has been added
+10.21.113.102-10.21.113.102 has been added
+10.21.114.141-10.21.114.141 has been added
+10.21.16.2-10.21.16.5 has been added
+10.21.16.250-10.21.16.253 has been added
+10.21.15.2-10.21.15.100 has been added
+10.21.15.250-10.21.15.253 has been added
+10.21.148.2-10.21.149.0 has been added
+10.21.149.132-10.21.149.132 has been added
+10.21.149.180-10.21.149.180 has been added
+10.21.150.175-10.21.150.175 has been added
+10.21.151.118-10.21.151.118 has been added
+10.21.151.193-10.21.151.193 has been added
+10.21.156.2-10.21.157.0 has been added
+10.21.157.10-10.21.157.12 has been added
+10.21.160.2-10.21.161.0 has been added
+10.21.161.10-10.21.161.21 has been added
+10.21.161.24-10.21.161.27 has been added
+10.21.161.29-10.21.161.29 has been added
+10.21.161.31-10.21.161.31 has been added
+10.21.116.2-10.21.117.0 has been added
+10.21.117.11-10.21.117.12 has been added
+10.21.118.208-10.21.118.208 has been added
+10.21.118.247-10.21.118.248 has been added
+10.21.120.2-10.21.121.0 has been added
+10.21.121.10-10.21.121.11 has been added
+10.21.121.21-10.21.121.21 has been added
+10.21.121.209-10.21.121.209 has been added
+10.21.122.73-10.21.122.73 has been added
+10.21.123.137-10.21.123.137 has been added
+10.21.132.2-10.21.133.0 has been added
+10.21.133.210-10.21.133.211 has been added
+10.21.136.2-10.21.137.0 has been added
+10.21.138.81-10.21.138.81 has been added
+10.21.140.2-10.21.141.0 has been added
+10.21.141.10-10.21.141.10 has been added
+10.21.142.212-10.21.142.212 has been added
+10.21.143.205-10.21.143.205 has been added
+10.21.143.249-10.21.143.250 has been added
+10.21.224.2-10.21.224.9 has been added
+10.21.224.100-10.21.224.199 has been added
+10.21.225.0-10.21.255.253 has been added
+10.21.19.2-10.21.19.16 has been added
+10.21.19.250-10.21.19.253 has been added
+10.21.180.2-10.21.180.32 has been added
+10.21.180.63-10.21.180.253 has been added
+10.223.28.2-10.223.29.0 has been added
+10.223.29.10-10.223.29.11 has been added
+10.223.31.233-10.223.31.233 has been added
+10.223.31.245-10.223.31.253 has been added
+10.223.32.2-10.223.33.0 has been added
+10.223.35.245-10.223.35.253 has been added
+10.223.48.2-10.223.49.0 has been added
+10.223.49.11-10.223.49.14 has been added
+10.223.50.151-10.223.50.151 has been added
+10.223.51.157-10.223.51.157 has been added
+10.223.51.223-10.223.51.223 has been added
+10.223.51.233-10.223.51.233 has been added
+10.223.51.245-10.223.51.253 has been added
+10.223.52.2-10.223.53.0 has been added
+10.223.54.180-10.223.54.180 has been added
+10.223.55.228-10.223.55.228 has been added
+10.223.55.245-10.223.55.253 has been added
+10.223.64.2-10.223.65.0 has been added
+10.223.67.245-10.223.67.253 has been added
+10.223.68.2-10.223.69.0 has been added
+10.223.71.245-10.223.71.253 has been added
+10.223.44.2-10.223.45.0 has been added
+10.223.46.243-10.223.46.243 has been added
+10.223.47.224-10.223.47.224 has been added
+10.223.47.245-10.223.47.253 has been added
+10.223.12.2-10.223.13.0 has been added
+10.223.15.245-10.223.15.253 has been added
+10.213.4.2-10.213.6.0 has been added
+10.213.7.245-10.213.7.253 has been added
+10.213.144.2-10.213.145.0 has been added
+10.213.145.11-10.213.145.12 has been added
+10.213.145.21-10.213.145.21 has been added
+10.213.147.245-10.213.147.253 has been added
+10.213.148.2-10.213.149.0 has been added
+10.213.149.191-10.213.149.191 has been added
+10.213.149.197-10.213.149.197 has been added
+10.213.150.189-10.213.150.190 has been added
+10.213.150.192-10.213.150.192 has been added
+10.213.150.246-10.213.150.246 has been added
+10.213.151.185-10.213.151.185 has been added
+10.213.151.190-10.213.151.190 has been added
+10.213.151.209-10.213.151.209 has been added
+10.213.151.245-10.213.151.253 has been added
+10.213.136.2-10.213.137.0 has been added
+10.213.137.11-10.213.137.11 has been added
+10.213.137.233-10.213.137.233 has been added
+10.213.139.165-10.213.139.165 has been added
+10.213.139.245-10.213.139.253 has been added
+10.213.140.2-10.213.141.0 has been added
+10.213.143.245-10.213.143.253 has been added
+10.213.72.2-10.213.73.0 has been added
+10.213.73.11-10.213.73.14 has been added
+10.213.73.21-10.213.73.24 has been added
+10.213.73.120-10.213.73.120 has been added
+10.213.73.129-10.213.73.129 has been added
+10.213.73.232-10.213.73.233 has been added
+10.213.74.225-10.213.74.225 has been added
+10.213.74.236-10.213.74.236 has been added
+10.213.74.241-10.213.74.241 has been added
+10.213.75.163-10.213.75.163 has been added
+10.213.75.223-10.213.75.223 has been added
+10.213.75.245-10.213.75.253 has been added
+10.213.36.2-10.213.37.0 has been added
+10.213.39.245-10.213.39.253 has been added
+10.213.60.2-10.213.61.0 has been added
+10.213.63.245-10.213.63.253 has been added
+10.213.48.2-10.213.49.0 has been added
+10.213.49.11-10.213.49.16 has been added
+10.213.51.245-10.213.51.253 has been added
+10.213.24.2-10.213.25.0 has been added
+10.213.25.11-10.213.25.12 has been added
+10.213.27.245-10.213.27.253 has been added
+10.213.0.2-10.213.1.0 has been added
+10.213.2.208-10.213.2.208 has been added
+10.213.3.245-10.213.3.253 has been added
+10.213.12.2-10.213.13.0 has been added
+10.213.13.11-10.213.13.11 has been added
+10.213.15.245-10.213.15.253 has been added
+10.213.84.2-10.213.85.0 has been added
+10.213.87.245-10.213.87.253 has been added
+10.213.96.2-10.213.97.0 has been added
+10.213.99.245-10.213.99.253 has been added
+10.213.108.2-10.213.109.0 has been added
+10.213.111.245-10.213.111.253 has been added
+10.213.132.2-10.213.133.0 has been added
+10.213.135.245-10.213.135.253 has been added
+10.213.120.2-10.213.121.0 has been added
+10.213.123.245-10.213.123.253 has been added
+10.213.100.2-10.213.101.0 has been added
+10.213.103.245-10.213.103.253 has been added
+10.213.112.2-10.213.113.0 has been added
+10.213.115.245-10.213.115.253 has been added
+10.213.8.2-10.213.9.0 has been added
+10.213.11.245-10.213.11.253 has been added
+10.213.124.2-10.213.125.0 has been added
+10.213.127.245-10.213.127.253 has been added
+10.213.88.2-10.213.89.0 has been added
+10.213.91.245-10.213.91.253 has been added
+10.213.76.2-10.213.77.0 has been added
+10.213.77.11-10.213.77.11 has been added
+10.213.77.21-10.213.77.21 has been added
+10.213.77.77-10.213.77.77 has been added
+10.213.79.245-10.213.79.253 has been added
+10.213.16.2-10.213.17.0 has been added
+10.213.17.11-10.213.17.11 has been added
+10.213.19.245-10.213.19.253 has been added
+10.213.64.2-10.213.65.0 has been added
+10.213.67.245-10.213.67.253 has been added
+10.213.28.2-10.213.29.0 has been added
+10.213.31.245-10.213.31.253 has been added
+10.213.52.2-10.213.53.0 has been added
+10.213.53.12-10.213.53.13 has been added
+10.213.55.245-10.213.55.253 has been added
+10.213.40.2-10.213.41.0 has been added
+10.213.43.245-10.213.43.253 has been added
+10.213.44.2-10.213.45.0 has been added
+10.213.45.11-10.213.45.29 has been added
+10.213.46.157-10.213.46.157 has been added
+10.213.47.146-10.213.47.146 has been added
+10.213.47.245-10.213.47.253 has been added
+10.213.20.2-10.213.21.0 has been added
+10.213.21.11-10.213.21.11 has been added
+10.213.23.245-10.213.23.253 has been added
+10.213.32.2-10.213.33.0 has been added
+10.213.33.241-10.213.33.241 has been added
+10.213.34.254-10.213.34.254 has been added
+10.213.35.216-10.213.35.216 has been added
+10.213.35.219-10.213.35.219 has been added
+10.213.35.241-10.213.35.241 has been added
+10.213.35.245-10.213.35.253 has been added
+10.213.56.2-10.213.57.0 has been added
+10.213.59.245-10.213.59.253 has been added
+10.213.104.2-10.213.105.0 has been added
+10.213.107.245-10.213.107.253 has been added
+10.213.68.2-10.213.69.0 has been added
+10.213.69.11-10.213.69.12 has been added
+10.213.71.245-10.213.71.253 has been added
+10.213.92.2-10.213.93.0 has been added
+10.213.95.245-10.213.95.253 has been added
+10.213.80.2-10.213.81.0 has been added
+10.213.81.11-10.213.81.13 has been added
+10.213.82.185-10.213.82.185 has been added
+10.213.82.188-10.213.82.188 has been added
+10.213.83.245-10.213.83.253 has been added
+10.213.116.2-10.213.117.0 has been added
+10.213.119.245-10.213.119.253 has been added
+10.213.128.2-10.213.129.0 has been added
+10.213.131.245-10.213.131.253 has been added
+10.223.60.2-10.223.61.0 has been added
+10.223.63.250-10.223.63.253 has been added
+10.21.28.2-10.21.28.49 has been added
+10.21.28.250-10.21.28.253 has been added
+10.223.84.2-10.223.85.0 has been added
+exclusions are now set correctly
+--------------------------------
+policies are now being created
+--------------------------------
+Policies are now being created at the server level using the allow/deny/ignore statements defined globally
+Policies are being created from the allow/deny/ignore statements present in 10.20.0.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.69.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.29.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.100.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.104.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.124.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.128.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.108.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.112.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.16.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.15.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.148.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.156.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.160.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.116.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.120.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.132.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.136.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.140.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.224.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.19.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.180.0
+Policies are being created from the allow/deny/ignore statements present in 10.223.28.0
+Policies are being created from the allow/deny/ignore statements present in 10.223.32.0
+Policies are being created from the allow/deny/ignore statements present in 10.223.48.0
+Policies are being created from the allow/deny/ignore statements present in 10.223.52.0
+Policies are being created from the allow/deny/ignore statements present in 10.223.64.0
+Policies are being created from the allow/deny/ignore statements present in 10.223.68.0
+Policies are being created from the allow/deny/ignore statements present in 10.223.44.0
+Policies are being created from the allow/deny/ignore statements present in 10.223.12.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.4.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.144.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.148.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.136.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.140.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.72.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.36.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.60.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.48.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.24.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.0.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.12.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.84.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.96.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.108.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.132.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.120.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.100.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.112.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.8.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.124.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.88.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.76.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.16.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.64.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.28.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.52.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.40.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.44.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.20.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.32.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.56.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.104.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.68.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.92.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.80.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.116.0
+Policies are being created from the allow/deny/ignore statements present in 10.213.128.0
+Policies are being created from the allow/deny/ignore statements present in 10.223.60.0
+Policies are being created from the allow/deny/ignore statements present in 10.21.28.0
+Policies are being created from the allow/deny/ignore statements present in 10.223.84.0

@@ -1,0 +1,1846 @@
+#dhcpd.conf
+
+key adoniskey
+{
+    algorithm hmac-md5;
+    secret "bUDFGuF9+o6UWS55h4dkkA==";
+};
+
+omapi-key adoniskey;
+omapi-port 7911;
+
+option vendor-specific-information code 43 = string;
+
+ddns-update-style interim;
+lease-file-name "/var/state/dhcp/dhcpd.leases";
+option name-service-search code 117 = array of unsigned integer 16;
+option domain-search code 119 = string;
+option sip-servers code 120 = string;
+option classless-static-route code 121 = string;
+option space cable-labs;
+option cable-labs.tsp-primary-dhcp-server code 1 = ip-address;
+option cable-labs.tsp-secondary-dhcp-server code 2 = ip-address;
+option cable-labs.tsp-provisioning-server code 3 = {integer 8, ip-address};
+option cable-labs.tsp-as-backoff-retry code 4 = { unsigned integer 32, unsigned integer 32, unsigned integer 32 };
+option cable-labs.tsp-ap-backoff-retry code 5 = { unsigned integer 32, unsigned integer 32, unsigned integer 32 };
+option cable-labs.tsp-kerberos-realm-name code 6 = string;
+option cable-labs.tsp-ticket-granting-server-utilization code 7 = boolean;
+option cable-labs.tsp-provisioning-timer code 8 = unsigned integer 8;
+option cable-labs-encapsulation code 122 = encapsulate cable-labs;
+option tftp-server-address code 150 = array of ip-address;
+option ip-telephone code 176 = string;
+option wpad-url code 252 = text;
+
+default-lease-time 86400;
+max-lease-time 2592000;
+min-lease-time 86400;
+server-identifier 10.20.0.186;
+
+authoritative ;
+ddns-updates true;
+
+# DHCP_GROUP: FE.AD.IGT.COM
+group
+{
+    ddns-domainname "fe.ad.igt.com";
+    option netbios-node-type 8;
+    option tftp-server-name "engapp3";
+    ddns-ttl 691200;
+    ddns-rev-domainname "in-addr.arpa";
+    option domain-name "fe.ad.igt.com";
+    ddns-updates true;
+    default-lease-time 691200;
+    max-lease-time 691200;
+    option domain-name-servers 10.20.1.1, 10.210.11.250;
+    option netbios-name-servers 10.20.0.51, 10.20.0.52;
+    # DHCP_SUBNET: DHCP Servers
+    subnet 10.20.0.0 netmask 255.255.0.0
+    {
+    }
+    # DHCP_SUBNET: IDF 2.2 - VLAN 13
+    subnet 10.21.69.0 netmask 255.255.255.0
+    {
+        range 10.21.69.20 10.21.69.249;
+        update-static-leases true;
+        option subnet-mask 255.255.255.0;
+        option routers 10.21.69.1;
+    }
+    # DHCP_SUBNET: IDF 2.2 - VLAN 9
+    subnet 10.21.29.0 netmask 255.255.255.0
+    {
+        range 10.21.29.6 10.21.29.249;
+        option subnet-mask 255.255.255.0;
+        option routers 10.21.29.1;
+    }
+    # DHCP_SUBNET: IDF 1.1 - VLAN 100
+    subnet 10.21.100.0 netmask 255.255.252.0
+    {
+        host E-XE7760_02PS
+        {
+            hardware ethernet 00:00:AA:C3:98:91;
+            fixed-address 10.21.101.11;
+        }
+
+        host GD4240n
+        {
+            hardware ethernet 00:17:08:8D:FC:A7;
+            fixed-address 10.21.101.12;
+        }
+
+        host WorkCentre133
+        {
+            hardware ethernet 08:00:37:25:BF:63;
+            fixed-address 10.21.101.13;
+        }
+
+        host PRNO-103-65
+        {
+            hardware ethernet 3C:4A:92:45:F0:3C;
+            fixed-address 10.21.103.65;
+        }
+
+        host noriega.rimando
+        {
+            hardware ethernet 00:01:29:27:9E:3E;
+            fixed-address 10.21.100.37;
+        }
+
+        range 10.21.101.1 10.21.101.10;
+        range 10.21.101.14 10.21.103.64;
+        range 10.21.103.66 10.21.103.254;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.21.100.1;
+    }
+    # DHCP_SUBNET: IDF 1.1 - VLAN 104
+    subnet 10.21.104.0 netmask 255.255.252.0
+    {
+        host HP3505_2
+        {
+            hardware ethernet 00:1A:4B:1A:0C:44;
+            fixed-address 10.21.105.11;
+        }
+
+        range 10.21.105.1 10.21.105.10;
+        range 10.21.105.12 10.21.107.254;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.21.104.1;
+    }
+    # DHCP_SUBNET: IDF 2.2 - VLAN 124
+    subnet 10.21.124.0 netmask 255.255.252.0
+    {
+        host FE423694
+        {
+            hardware ethernet 00:19:B9:44:C7:0C;
+            fixed-address 10.21.124.21;
+        }
+
+        host prno-125-094
+        {
+            hardware ethernet 00:00:AA:8D:B6:37;
+            fixed-address 10.21.125.94;
+        }
+
+        host prno-127-090
+        {
+            hardware ethernet 00:1E:0B:06:65:C6;
+            fixed-address 10.21.127.90;
+        }
+
+        host prno-126-092
+        {
+            hardware ethernet 00:11:0A:BD:66:52;
+            fixed-address 10.21.126.92;
+        }
+
+        host NPI1014DA.fe.ad.igt.com
+        {
+            hardware ethernet 00:1B:78:10:14:DA;
+            fixed-address 10.21.126.87;
+        }
+
+        host 10.21.127.85
+        {
+            hardware ethernet 00:1A:4B:1A:4C:DA;
+            fixed-address 10.21.127.85;
+        }
+
+        host NPI108724.fe.ad.igt.com
+        {
+            hardware ethernet 00:1B:78:10:87:24;
+            fixed-address 10.21.125.89;
+        }
+
+        range 10.21.125.1 10.21.125.88;
+        range 10.21.125.90 10.21.125.93;
+        range 10.21.125.95 10.21.126.86;
+        range 10.21.126.88 10.21.126.91;
+        range 10.21.126.93 10.21.127.84;
+        range 10.21.127.86 10.21.127.89;
+        range 10.21.127.91 10.21.127.254;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.21.124.1;
+    }
+    # DHCP_SUBNET: IDF 2.2 - VLAN 128
+    subnet 10.21.128.0 netmask 255.255.252.0
+    {
+        host FE420758
+        {
+            hardware ethernet 00:13:72:97:D9:50;
+            fixed-address 10.21.130.245;
+        }
+
+        host NPI1A1CC9.fe.ad.igt.com
+        {
+            hardware ethernet 00:1A:4B:1A:1C:C9;
+            fixed-address 10.21.129.145;
+        }
+
+        host NPI10B798.fe.ad.igt.com
+        {
+            hardware ethernet 00:1B:78:10:B7:98;
+            fixed-address 10.21.131.144;
+        }
+
+        range 10.21.129.1 10.21.129.144;
+        range 10.21.129.146 10.21.130.244;
+        range 10.21.130.246 10.21.131.143;
+        range 10.21.131.145 10.21.131.254;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.21.128.1;
+    }
+    # DHCP_SUBNET: IDF 1.2 - VLAN 108
+    subnet 10.21.108.0 netmask 255.255.252.0
+    {
+        host Mac_PC
+        {
+            hardware ethernet 00:25:00:EE:83:DF;
+            fixed-address 10.21.109.96;
+        }
+
+        range 10.21.109.1 10.21.109.95;
+        range 10.21.109.97 10.21.111.254;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.21.108.1;
+    }
+    # DHCP_SUBNET: IDF 1.2 - VLAN 112
+    subnet 10.21.112.0 netmask 255.255.252.0
+    {
+        host FE421144
+        {
+            hardware ethernet 00:18:8B:20:15:DA;
+            fixed-address 10.21.113.21;
+        }
+
+        host ERNOL-Q1001251
+        {
+            hardware ethernet 5C:26:0A:02:1A:29;
+            fixed-address 10.21.114.141;
+        }
+
+        host ERNOL-Q1002931
+        {
+            hardware ethernet D4:BE:D9:22:A9:B8;
+            fixed-address 10.21.113.102;
+        }
+
+        range 10.21.113.1 10.21.113.20;
+        range 10.21.113.22 10.21.113.101;
+        range 10.21.113.103 10.21.114.140;
+        range 10.21.114.142 10.21.115.254;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.21.112.1;
+    }
+    # DHCP_SUBNET: IDF 1.1 - VLAN 16
+    subnet 10.21.16.0 netmask 255.255.255.0
+    {
+        range 10.21.16.6 10.21.16.249;
+        option subnet-mask 255.255.255.0;
+        option routers 10.21.16.1;
+    }
+    # DHCP_SUBNET: IDF 2.2 - VLAN 5
+    subnet 10.21.15.0 netmask 255.255.255.0
+    {
+        range 10.21.15.101 10.21.15.249;
+        option subnet-mask 255.255.255.0;
+        option routers 10.21.15.1;
+    }
+    # DHCP_SUBNET: IDF 18 - VLAN 148
+    subnet 10.21.148.0 netmask 255.255.252.0
+    {
+        host FE424735
+        {
+            hardware ethernet 00:1D:09:29:10:D8;
+            fixed-address 10.21.150.175;
+        }
+
+        host FE424733
+        {
+            hardware ethernet 00:1D:09:29:66:1D;
+            fixed-address 10.21.149.180;
+        }
+
+        host RNOWDWGKCF1
+        {
+            hardware ethernet 00:1D:09:10:C6:60;
+            fixed-address 10.21.151.193;
+        }
+
+        host PRNO-149-132.is.ad.igt.com
+        {
+            hardware ethernet 00:0E:7F:E2:F6:E2;
+            fixed-address 10.21.149.132;
+        }
+
+        host ERNOW-Q1001404
+        {
+            hardware ethernet B8:AC:6F:8D:8F:9E;
+            fixed-address 10.21.151.118;
+        }
+
+        host ERNOW-Q1002357
+        {
+            hardware ethernet BC:30:5B:E1:03:4E;
+            fixed-address 10.21.148.31;
+        }
+
+        host ERNOW-Q1000395
+        {
+            hardware ethernet 00:26:B9:7D:FC:1E;
+            fixed-address 10.21.148.32;
+        }
+
+        host ernow-q1002353
+        {
+            hardware ethernet BC:30:5B:E7:AC:DD;
+            fixed-address 10.21.148.33;
+        }
+
+        host fe415677
+        {
+            hardware ethernet 00:30:6E:B6:97:7A;
+            fixed-address 10.21.148.34;
+        }
+
+        host fe424681
+        {
+            hardware ethernet 00:1D:09:28:C2:70;
+            fixed-address 10.21.148.35;
+        }
+
+        range 10.21.149.1 10.21.149.131;
+        range 10.21.149.133 10.21.149.179;
+        range 10.21.149.181 10.21.150.174;
+        range 10.21.150.176 10.21.151.117;
+        range 10.21.151.119 10.21.151.192;
+        range 10.21.151.194 10.21.151.254;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.21.148.1;
+    }
+    # DHCP_SUBNET: IDF 19 - VLAN 156
+    subnet 10.21.156.0 netmask 255.255.252.0
+    {
+        host FE418633
+        {
+            hardware ethernet 00:13:20:3C:44:A0;
+            fixed-address 10.21.157.10;
+        }
+
+        host ERNOW-Q0422269
+        {
+            hardware ethernet 00:13:72:3A:D3:AC;
+            fixed-address 10.21.157.11;
+        }
+
+        host ERNOW-Q1000837
+        {
+            hardware ethernet B8:AC:6F:7E:B0:73;
+            fixed-address 10.21.157.12;
+        }
+
+        range 10.21.157.1 10.21.157.9;
+        range 10.21.157.13 10.21.159.254;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.21.156.1;
+    }
+    # DHCP_SUBNET: IDF 19 - VLAN 160
+    subnet 10.21.160.0 netmask 255.255.252.0
+    {
+        host FE424682
+        {
+            hardware ethernet 00:1D:09:28:54:97;
+            fixed-address 10.21.161.27;
+        }
+
+        host FE426091
+        {
+            hardware ethernet 00:1E:C9:46:AD:DA;
+            fixed-address 10.21.161.31;
+        }
+
+        host ERNOW-Q0410120
+        {
+            hardware ethernet 00:06:5B:87:8A:95;
+            fixed-address 10.21.161.10;
+        }
+
+        host ERNOW-Q0411162
+        {
+            hardware ethernet 00:06:5B:83:EF:39;
+            fixed-address 10.21.161.11;
+        }
+
+        host ERNOW-Q0418815
+        {
+            hardware ethernet 00:07:E9:09:43:BD;
+            fixed-address 10.21.161.12;
+        }
+
+        host ERNOW-Q0428810
+        {
+            hardware ethernet 00:06:5B:83:EA:C9;
+            fixed-address 10.21.161.13;
+        }
+
+        host ERNOW-Q0428811
+        {
+            hardware ethernet 00:06:5B:83:F0:1A;
+            fixed-address 10.21.161.15;
+        }
+
+        host ERNOW-Q0428812
+        {
+            hardware ethernet 00:06:5B:84:21:6E;
+            fixed-address 10.21.161.17;
+        }
+
+        host FE412786
+        {
+            hardware ethernet 00:0A:5E:65:78:7B;
+            fixed-address 10.21.161.18;
+        }
+
+        host FE415649
+        {
+            hardware ethernet 00:30:6E:B6:A8:ED;
+            fixed-address 10.21.161.19;
+        }
+
+        host ERNOW-Q0418920
+        {
+            hardware ethernet 00:13:20:4A:08:36;
+            fixed-address 10.21.161.20;
+        }
+
+        host FE419599
+        {
+            hardware ethernet 00:11:25:5A:34:34;
+            fixed-address 10.21.161.21;
+        }
+
+        host FE422844
+        {
+            hardware ethernet 00:1A:A0:32:0F:E3;
+            fixed-address 10.21.161.24;
+        }
+
+        host FE422845
+        {
+            hardware ethernet 00:1A:A0:31:C3:AE;
+            fixed-address 10.21.161.25;
+        }
+
+        host FE424680
+        {
+            hardware ethernet 00:1D:09:28:C1:22;
+            fixed-address 10.21.161.26;
+        }
+
+        host FE425956
+        {
+            hardware ethernet 00:1E:C9:2A:77:F8;
+            fixed-address 10.21.161.29;
+        }
+
+        host ERNOW-Q0419528
+        {
+            hardware ethernet 00:11:11:4A:CB:FA;
+            fixed-address 10.21.161.16;
+        }
+
+        host FE417177
+        {
+            hardware ethernet 00:11:11:4D:2E:0E;
+            fixed-address 10.21.161.14;
+        }
+
+        host ERNOW-Q0415678
+        {
+            hardware ethernet 00:30:6E:B6:A5:72;
+            fixed-address 10.21.160.31;
+        }
+
+        host ERNOW-Q1002355
+        {
+            hardware ethernet BC:30:5B:E7:AC:DC;
+            fixed-address 10.21.160.32;
+        }
+
+        host FE418293
+        {
+            hardware ethernet 00:11:11:96:E7:0C;
+            fixed-address 10.21.160.33;
+        }
+
+        range 10.21.161.1 10.21.161.9;
+        range 10.21.161.22 10.21.161.23;
+        range 10.21.161.28 10.21.161.28;
+        range 10.21.161.30 10.21.161.30;
+        range 10.21.161.32 10.21.163.254;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.21.160.1;
+    }
+    # DHCP_SUBNET: IDF 2.1 - VLAN 116
+    subnet 10.21.116.0 netmask 255.255.252.0
+    {
+        host AVP115
+        {
+            hardware ethernet 00:D0:EF:23:69:2A;
+            fixed-address 10.21.116.213;
+        }
+
+        host FE414522
+        {
+            hardware ethernet 00:0D:56:BF:07:EF;
+            fixed-address 10.21.118.247;
+        }
+
+        host ERNOW-Q1000084
+        {
+            hardware ethernet 00:23:AE:98:5F:24;
+            fixed-address 10.21.118.248;
+        }
+
+        host FE424732
+        {
+            hardware ethernet 00:1E:4F:A7:6D:45;
+            fixed-address 10.21.117.11;
+        }
+
+        host E-HP5100_05
+        {
+            hardware ethernet 00:0E:7F:E3:BC:40;
+            fixed-address 10.21.117.12;
+        }
+
+        host ERNOW-Q0421154
+        {
+            hardware ethernet 00:18:8B:20:F4:4D;
+            fixed-address 10.21.118.208;
+        }
+
+        range 10.21.117.1 10.21.117.10;
+        range 10.21.117.13 10.21.118.207;
+        range 10.21.118.209 10.21.118.246;
+        range 10.21.118.249 10.21.119.254;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.21.116.1;
+        option ntp-servers 10.20.1.1, 10.20.1.2;
+        option vendor-specific-information "g2sCC=shs:config.casino.com:443|gsaCM=tsu:certmgr.casino.com:8080|gsaCI=tsu:certissue.casino.com:80|gsaCS=tou:192.168.45.67:8081,tou:192.68.45.68:8081|gsaOO=5|gsaOR=120|gsaOA=360";
+    }
+    # DHCP_SUBNET: IDF 2.1 - VLAN 120
+    subnet 10.21.120.0 netmask 255.255.252.0
+    {
+        host FE423956
+        {
+            hardware ethernet 00:1A:A0:AD:D6:9E;
+            fixed-address 10.21.121.10;
+        }
+
+        host FE413091
+        {
+            hardware ethernet 00:07:E9:E1:77:89;
+            fixed-address 10.21.123.137;
+        }
+
+        host HP4300_1
+        {
+            hardware ethernet 00:0E:7F:DE:8B:4C;
+            fixed-address 10.21.120.17;
+        }
+
+        host E-HP9000_05
+        {
+            hardware ethernet 00:01:E6:89:BB:A1;
+            fixed-address 10.21.121.11;
+        }
+
+        host FE421170
+        {
+            hardware ethernet 00:18:8B:21:96:C1;
+            fixed-address 10.21.120.189;
+        }
+
+        host ERNOW-Q1000080
+        {
+            hardware ethernet 00:23:AE:97:D9:0E;
+            fixed-address 10.21.121.21;
+        }
+
+        host 10.21.121.209
+        {
+            hardware ethernet 00:19:E3:F8:D1:BE;
+            fixed-address 10.21.121.209;
+        }
+
+        host FE420115.fe.ad.igt.com
+        {
+            hardware ethernet 00:10:18:00:69:E8;
+            fixed-address 10.21.122.73;
+        }
+
+        host ERNOW-Q0426631
+        {
+            hardware ethernet 00:10:18:00:00:00;
+            fixed-address 10.21.120.22;
+        }
+
+        range 10.21.121.1 10.21.121.9;
+        range 10.21.121.12 10.21.121.20;
+        range 10.21.121.22 10.21.121.208;
+        range 10.21.121.210 10.21.122.72;
+        range 10.21.122.74 10.21.123.136;
+        range 10.21.123.138 10.21.123.254;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.21.120.1;
+        option ntp-servers 10.20.1.1, 10.20.1.2;
+        option vendor-specific-information "g2sCC=shs:config.casino.com:443|gsaCM=tsu:certmgr.casino.com:8080|gsaCI=tsu:certissue.casino.com:80|gsaCS=tou:192.168.45.67:8081,tou:192.68.45.68:8081|gsaOO=5|gsaOR=120|gsaOA=360";
+    }
+    # DHCP_SUBNET: IDF 2.3 - VLAN 132
+    subnet 10.21.132.0 netmask 255.255.252.0
+    {
+        host ERNOW-Q0423960
+        {
+            hardware ethernet 00:1A:A0:B3:FB:F6;
+            fixed-address 10.21.133.211;
+        }
+
+        host fe418595.fe.ad.igt.com
+        {
+            hardware ethernet 00:11:11:59:99:35;
+            fixed-address 10.21.132.175;
+        }
+
+        host ERNOW-Q0424759.fe.ad.igt.com
+        {
+            hardware ethernet 00:1E:4F:A8:56:8E;
+            fixed-address 10.21.133.210;
+        }
+
+        host sam.delaney
+        {
+            hardware ethernet 00:1E:4F:A8:38:FE;
+            fixed-address 10.21.132.176;
+        }
+
+        host CERNOW-Q0428498
+        {
+            hardware ethernet 00:25:64:B5:11:63;
+            fixed-address 10.21.132.119;
+        }
+
+        range 10.21.133.1 10.21.133.209;
+        range 10.21.133.212 10.21.135.254;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.21.132.1;
+    }
+    # DHCP_SUBNET: IDF 2.3 - VLAN 136
+    subnet 10.21.136.0 netmask 255.255.252.0
+    {
+        host IGTEGM-QSNGFD4K.fe.ad.igt.com
+        {
+            hardware ethernet 00:01:2E:0E:C7:47;
+            fixed-address 10.21.138.81;
+        }
+
+        range 10.21.137.1 10.21.138.80;
+        range 10.21.138.82 10.21.139.254;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.21.136.1;
+    }
+    # DHCP_SUBNET: IDF 14 - VLAN 140
+    subnet 10.21.140.0 netmask 255.255.252.0
+    {
+        host ernow-q1001633
+        {
+            hardware ethernet F0:4D:A2:29:9F:6E;
+            fixed-address 10.21.143.249;
+        }
+
+        host FE422833
+        {
+            hardware ethernet 00:1A:A0:1B:87:02;
+            fixed-address 10.21.143.250;
+        }
+
+        host HP4600n
+        {
+            hardware ethernet 00:0E:7F:E2:E4:0B;
+            fixed-address 10.21.141.10;
+        }
+
+        host ERNOW-01001630.fe.ad.igt.com
+        {
+            hardware ethernet F0:4D:A2:28:F1:61;
+            fixed-address 10.21.142.212;
+        }
+
+        host Lowrey.Deborah
+        {
+            hardware ethernet BC:30:5B:EA:F7:C1;
+            fixed-address 10.21.143.205;
+        }
+
+        range 10.21.141.1 10.21.141.9;
+        range 10.21.141.11 10.21.142.211;
+        range 10.21.142.213 10.21.143.204;
+        range 10.21.143.206 10.21.143.248;
+        range 10.21.143.251 10.21.143.254;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.21.140.1;
+    }
+    # DHCP_SUBNET: IDF 2.2 - VLAN 7
+    subnet 10.21.224.0 netmask 255.255.224.0
+    {
+        range 10.21.224.10 10.21.224.99;
+        range 10.21.224.200 10.21.224.255;
+        update-static-leases true;
+        option subnet-mask 255.255.224.0;
+        option routers 10.21.224.1;
+    }
+    # DHCP_SUBNET: IDF 1.1 - VLAN 19
+    subnet 10.21.19.0 netmask 255.255.255.0
+    {
+        range 10.21.19.17 10.21.19.249;
+        option subnet-mask 255.255.255.0;
+        option routers 10.21.19.1;
+    }
+    # DHCP_SUBNET: Sandhill Lab
+    subnet 10.21.180.0 netmask 255.255.255.0
+    {
+        range 10.21.180.33 10.21.180.62;
+        option subnet-mask 255.255.255.0;
+        option routers 10.21.180.252;
+    }
+    # DHCP_SUBNET: LV-ENG-IDF2D1A - VLAN 1779
+    subnet 10.223.28.0 netmask 255.255.252.0
+    {
+        host AWBuild03
+        {
+            hardware ethernet 00:25:64:8C:05:F2;
+            fixed-address 10.223.29.10;
+        }
+
+        host AWBuild04
+        {
+            hardware ethernet 00:25:64:8C:0C:03;
+            fixed-address 10.223.29.11;
+        }
+
+        host CLASW-Q1000607
+        {
+            hardware ethernet B8:AC:6F:20:FF:79;
+            fixed-address 10.223.31.233;
+        }
+
+        range 10.223.29.1 10.223.29.9;
+        range 10.223.29.12 10.223.31.232;
+        range 10.223.31.234 10.223.31.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.223.28.1;
+        option domain-name-servers 10.223.253.26, 10.20.1.1, 10.20.1.2;
+        option netbios-name-servers 10.223.253.25;
+    }
+    # DHCP_SUBNET: LV-ENG-IDF2D1B - VLAN 1789
+    subnet 10.223.32.0 netmask 255.255.252.0
+    {
+        range 10.223.33.1 10.223.35.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.223.32.1;
+        option domain-name-servers 10.223.253.26, 10.20.1.1, 10.20.1.2;
+        option netbios-name-servers 10.223.253.25;
+    }
+    # DHCP_SUBNET: LV-ENG-IDF2F1A - VLAN 1829
+    subnet 10.223.48.0 netmask 255.255.252.0
+    {
+        host LASW0789004
+        {
+            hardware ethernet 00:12:3F:4C:CA:E9;
+            fixed-address 10.223.48.11;
+        }
+
+        host Unknown-PC
+        {
+            hardware ethernet 00:30:1B:B8:89:3D;
+            fixed-address 10.223.49.11;
+        }
+
+        host Unknown-EGM
+        {
+            hardware ethernet 00:01:2E:0E:ED:74;
+            fixed-address 10.223.49.12;
+        }
+
+        host AVP_Machine.fe.ad.igt.com
+        {
+            hardware ethernet 00:01:2E:0E:76:43;
+            fixed-address 10.223.51.157;
+        }
+
+        host CLASW-Q1002037
+        {
+            hardware ethernet BC:30:5B:E8:8F:C8;
+            fixed-address 10.223.50.151;
+        }
+
+        host Unknown-EGM02
+        {
+            hardware ethernet 04:0C:CE:E4:43:46;
+            fixed-address 10.223.49.13;
+        }
+
+        host ELASW-Q1001245
+        {
+            hardware ethernet B8:AC:6F:2B:90:76;
+            fixed-address 10.223.49.14;
+        }
+
+        host ERNOW-Q0426629
+        {
+            hardware ethernet 00:21:9B:3A:E2:BC;
+            fixed-address 10.223.48.12;
+        }
+
+        host CVOW1110001.is.ad.igt.com
+        {
+            hardware ethernet 00:1A:A0:07:06:53;
+            fixed-address 10.223.51.233;
+        }
+
+        host CLASW-Q1002306
+        {
+            hardware ethernet BC:30:5B:E8:90:6A;
+            fixed-address 10.223.51.223;
+        }
+
+        range 10.223.49.1 10.223.49.10;
+        range 10.223.49.15 10.223.50.150;
+        range 10.223.50.152 10.223.51.156;
+        range 10.223.51.158 10.223.51.222;
+        range 10.223.51.224 10.223.51.232;
+        range 10.223.51.234 10.223.51.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.223.48.1;
+        option domain-name-servers 10.223.253.26, 10.20.1.1, 10.20.1.2;
+        option netbios-name-servers 10.223.253.25;
+    }
+    # DHCP_SUBNET: LV-ENG-IDF2F1B - VLAN 1839
+    subnet 10.223.52.0 netmask 255.255.252.0
+    {
+        host PLAS-054-180
+        {
+            hardware ethernet 00:30:6E:CD:44:DE;
+            fixed-address 10.223.54.180;
+        }
+
+        host LASW0786090
+        {
+            hardware ethernet 00:13:72:2B:B2:3C;
+            fixed-address 10.223.55.228;
+        }
+
+        host ELASW-Q0426613
+        {
+            hardware ethernet 00:21:9B:3A:DA:6B;
+            fixed-address 10.223.52.51;
+        }
+
+        range 10.223.53.1 10.223.54.179;
+        range 10.223.54.181 10.223.55.227;
+        range 10.223.55.229 10.223.55.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.223.52.1;
+        option domain-name-servers 10.223.253.26, 10.20.1.1, 10.20.1.2;
+        option netbios-name-servers 10.223.253.25;
+    }
+    # DHCP_SUBNET: LV-ENG-IDF2D1C - VLAN 1869
+    subnet 10.223.64.0 netmask 255.255.252.0
+    {
+        range 10.223.65.1 10.223.67.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.223.64.1;
+        option domain-name-servers 10.223.253.26, 10.20.1.1, 10.20.1.2;
+        option netbios-name-servers 10.223.253.25;
+    }
+    # DHCP_SUBNET: LV-ENG-IDF2F1C - VLAN 1879
+    subnet 10.223.68.0 netmask 255.255.252.0
+    {
+        range 10.223.69.1 10.223.71.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.223.68.1;
+        option domain-name-servers 10.223.253.26, 10.20.1.1, 10.20.1.2;
+        option netbios-name-servers 10.223.253.25;
+    }
+    # DHCP_SUBNET: LV-ENG-IDF1F1A - VLAN 1819
+    subnet 10.223.44.0 netmask 255.255.252.0
+    {
+        host CLASW-Q0419661
+        {
+            hardware ethernet 00:12:3F:7A:CB:81;
+            fixed-address 10.223.47.224;
+        }
+
+        host elasw-q0423601
+        {
+            hardware ethernet 00:19:B9:27:B0:88;
+            fixed-address 10.223.46.243;
+        }
+
+        range 10.223.45.1 10.223.46.242;
+        range 10.223.46.244 10.223.47.223;
+        range 10.223.47.225 10.223.47.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.223.44.1;
+        option domain-name-servers 10.223.253.26, 10.20.1.1, 10.20.1.2;
+        option netbios-name-servers 10.223.253.25;
+    }
+    # DHCP_SUBNET: LV-ENG-IDF1B2 - VLAN 1739
+    subnet 10.223.12.0 netmask 255.255.252.0
+    {
+        range 10.223.13.1 10.223.15.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.223.12.1;
+        option domain-name-servers 10.223.253.26, 10.20.1.1, 10.20.1.2;
+        option netbios-name-servers 10.223.253.25;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1519
+    subnet 10.213.4.0 netmask 255.255.252.0
+    {
+        host E-HP9050_07
+        {
+            hardware ethernet 00:13:21:C1:E5:5E;
+            fixed-address 10.213.5.12;
+        }
+
+        host E-XE7750_03
+        {
+            hardware ethernet 00:00:AA:8D:A8:01;
+            fixed-address 10.213.5.13;
+        }
+
+        range 10.213.6.1 10.213.7.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.4.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1869
+    subnet 10.213.144.0 netmask 255.255.252.0
+    {
+        host E-HP2420_01
+        {
+            hardware ethernet 00:14:38:8B:69:A9;
+            fixed-address 10.213.145.11;
+        }
+
+        host E-XE7750_02
+        {
+            hardware ethernet 00:1C:23:14:39:00;
+            fixed-address 10.213.145.12;
+        }
+
+        host FE413824
+        {
+            hardware ethernet 00:07:E9:54:69:A8;
+            fixed-address 10.213.145.21;
+        }
+
+        range 10.213.145.1 10.213.145.10;
+        range 10.213.145.13 10.213.145.20;
+        range 10.213.145.22 10.213.147.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.144.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1879
+    subnet 10.213.148.0 netmask 255.255.252.0
+    {
+        host ERNOL-1001828
+        {
+            hardware ethernet 5C:26:0A:2E:AD:EB;
+            fixed-address 10.213.151.190;
+        }
+
+        host 10.213.149.191
+        {
+            hardware ethernet 00:1D:09:28:52:A3;
+            fixed-address 10.213.149.191;
+        }
+
+        host 10.213.150.190
+        {
+            hardware ethernet 00:18:8B:89:7A:14;
+            fixed-address 10.213.150.190;
+        }
+
+        host ERNOW-Q0424733.fe.ad.igt.com
+        {
+            hardware ethernet 00:1D:09:29:66:D1;
+            fixed-address 10.213.150.189;
+        }
+
+        host 10.213.149.197
+        {
+            hardware ethernet B8:AC:6F:94:B2:D9;
+            fixed-address 10.213.149.197;
+        }
+
+        host RNOLJBW8JF1
+        {
+            hardware ethernet 00:1D:09:B4:F3:21;
+            fixed-address 10.213.151.185;
+        }
+
+        host ERNOW-Q1000815.fe.ad.igt.com
+        {
+            hardware ethernet B8:AC:6F:85:4F:5F;
+            fixed-address 10.213.151.209;
+        }
+
+        host CRNOL-Q1001734
+        {
+            hardware ethernet 5C:26:0A:18:80:D6;
+            fixed-address 10.213.150.192;
+        }
+
+        host arneson.jeff
+        {
+            hardware ethernet 00:1E:C9:46:AF:5E;
+            fixed-address 10.213.150.246;
+        }
+
+        range 10.213.149.1 10.213.149.190;
+        range 10.213.149.192 10.213.149.196;
+        range 10.213.149.198 10.213.150.188;
+        range 10.213.150.191 10.213.150.191;
+        range 10.213.150.193 10.213.150.245;
+        range 10.213.150.247 10.213.151.184;
+        range 10.213.151.186 10.213.151.189;
+        range 10.213.151.191 10.213.151.208;
+        range 10.213.151.210 10.213.151.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.148.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1849
+    subnet 10.213.136.0 netmask 255.255.252.0
+    {
+        host std1_rno_09pcl6
+        {
+            hardware ethernet 00:0E:7F:E7:4B:A2;
+            fixed-address 10.213.137.11;
+        }
+
+        host ERNOW-Q1001084
+        {
+            hardware ethernet B8:AC:6F:35:DD:41;
+            fixed-address 10.213.139.165;
+        }
+
+        host PRNO-137-233
+        {
+            hardware ethernet 00:40:CA:A4:19:08;
+            fixed-address 10.213.137.233;
+        }
+
+        range 10.213.137.1 10.213.137.10;
+        range 10.213.137.12 10.213.137.232;
+        range 10.213.137.234 10.213.139.164;
+        range 10.213.139.166 10.213.139.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.136.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1859
+    subnet 10.213.140.0 netmask 255.255.252.0
+    {
+        range 10.213.141.1 10.213.143.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.140.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1689
+    subnet 10.213.72.0 netmask 255.255.252.0
+    {
+        host E-RI2035_01
+        {
+            hardware ethernet 00:00:74:88:67:74;
+            fixed-address 10.213.73.11;
+        }
+
+        host E-HP9000_03
+        {
+            hardware ethernet 00:01:E6:31:AC:D0;
+            fixed-address 10.213.73.12;
+        }
+
+        host E-HP8150_01
+        {
+            hardware ethernet 00:1B:78:ED:43:0D;
+            fixed-address 10.213.73.13;
+        }
+
+        host E-HP4100_01
+        {
+            hardware ethernet 00:01:E6:31:F2:07;
+            fixed-address 10.213.73.14;
+        }
+
+        host CRNOW-Q0423829
+        {
+            hardware ethernet 00:1A:A0:C2:0E:59;
+            fixed-address 10.213.73.21;
+        }
+
+        host rnoeftd412116
+        {
+            hardware ethernet 00:08:74:41:1C:EB;
+            fixed-address 10.213.73.22;
+        }
+
+        host rnoeftd411081
+        {
+            hardware ethernet 00:06:5B:87:87:48;
+            fixed-address 10.213.73.23;
+        }
+
+        host CRNOL-Q1000034
+        {
+            hardware ethernet 00:24:E8:9E:E7:6F;
+            fixed-address 10.213.73.24;
+        }
+
+        host ERNOW-Q0423765
+        {
+            hardware ethernet 00:1A:A0:D6:B4:41;
+            fixed-address 10.213.74.236;
+        }
+
+        host CRNOW-Q0423746
+        {
+            hardware ethernet 00:1E:4F:D4:62:2F;
+            fixed-address 10.213.74.225;
+        }
+
+        host CRNOW-Q1000546
+        {
+            hardware ethernet 00:25:64:C7:51:E9;
+            fixed-address 10.213.73.129;
+        }
+
+        host sperrypc
+        {
+            hardware ethernet 00:1A:A0:C3:19:DA;
+            fixed-address 10.213.72.251;
+        }
+
+        host crnow-q0423716
+        {
+            hardware ethernet 00:1E:4F:DA:03:0D;
+            fixed-address 10.213.72.253;
+        }
+
+        host rnonasw420855
+        {
+            hardware ethernet 00:18:8B:21:5B:E6;
+            fixed-address 10.213.75.223;
+        }
+
+        host rnoeftl423876
+        {
+            hardware ethernet 00:19:B9:80:53:EA;
+            fixed-address 10.213.75.163;
+        }
+
+        host CRNOW-Q0417867
+        {
+            hardware ethernet 00:19:B9:07:B1:42;
+            fixed-address 10.213.73.232;
+        }
+
+        host RNOL330WBG1
+        {
+            hardware ethernet 00:1C:23:AB:6B:F8;
+            fixed-address 10.213.73.120;
+        }
+
+        host RNONASW423755.fe.ad.igt.com
+        {
+            hardware ethernet 00:1E:4F:C3:CC:D2;
+            fixed-address 10.213.73.233;
+        }
+
+        host CRNOW-Q0420858
+        {
+            hardware ethernet 00:18:8B:21:CD:02;
+            fixed-address 10.213.74.241;
+        }
+
+        host tribendu.EGM
+        {
+            hardware ethernet 00:01:29:06:36:65;
+            fixed-address 10.213.72.101;
+        }
+
+        range 10.213.73.1 10.213.73.10;
+        range 10.213.73.15 10.213.73.20;
+        range 10.213.73.25 10.213.73.119;
+        range 10.213.73.121 10.213.73.128;
+        range 10.213.73.130 10.213.73.231;
+        range 10.213.73.234 10.213.74.224;
+        range 10.213.74.226 10.213.74.235;
+        range 10.213.74.237 10.213.74.240;
+        range 10.213.74.242 10.213.75.162;
+        range 10.213.75.164 10.213.75.222;
+        range 10.213.75.224 10.213.75.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.72.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1599
+    subnet 10.213.36.0 netmask 255.255.252.0
+    {
+        range 10.213.37.1 10.213.39.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.36.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1659
+    subnet 10.213.60.0 netmask 255.255.252.0
+    {
+        range 10.213.61.1 10.213.63.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.60.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1629
+    subnet 10.213.48.0 netmask 255.255.252.0
+    {
+        host E-HP2550_01
+        {
+            hardware ethernet 00:11:0A:BC:19:03;
+            fixed-address 10.213.49.11;
+        }
+
+        host E-HP2550_02
+        {
+            hardware ethernet 00:11:0A:BC:43:03;
+            fixed-address 10.213.49.12;
+        }
+
+        host E-HP3600_03
+        {
+            hardware ethernet 00:14:38:46:D2:1F;
+            fixed-address 10.213.49.13;
+        }
+
+        host E-HP3600_01
+        {
+            hardware ethernet 00:14:38:4A:2F:D5;
+            fixed-address 10.213.49.14;
+        }
+
+        host E-HP9050_03
+        {
+            hardware ethernet 00:14:38:DB:E0:32;
+            fixed-address 10.213.49.15;
+        }
+
+        host E-HP3505_01
+        {
+            hardware ethernet 00:1B:78:1D:2C:8E;
+            fixed-address 10.213.49.16;
+        }
+
+        range 10.213.49.1 10.213.49.10;
+        range 10.213.49.17 10.213.51.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.48.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1569
+    subnet 10.213.24.0 netmask 255.255.252.0
+    {
+        host E-HP5100_02
+        {
+            hardware ethernet 00:0E:7F:D8:06:9A;
+            fixed-address 10.213.25.11;
+        }
+
+        host E-OCETDS600_01
+        {
+            hardware ethernet 00:14:22:3D:FE:22;
+            fixed-address 10.213.25.12;
+        }
+
+        range 10.213.25.1 10.213.25.10;
+        range 10.213.25.13 10.213.27.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.24.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1509
+    subnet 10.213.0.0 netmask 255.255.252.0
+    {
+        host prno_02_208.is.ad.igt.com
+        {
+            hardware ethernet 00:1A:4B:0C:CE:1D;
+            fixed-address 10.213.2.208;
+        }
+
+        range 10.213.1.1 10.213.2.207;
+        range 10.213.2.209 10.213.3.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.0.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1539
+    subnet 10.213.12.0 netmask 255.255.252.0
+    {
+        host E-OCETDS600_04
+        {
+            hardware ethernet 00:0B:DB:57:C6:96;
+            fixed-address 10.213.13.11;
+        }
+
+        range 10.213.13.1 10.213.13.10;
+        range 10.213.13.12 10.213.15.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.12.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1719
+    subnet 10.213.84.0 netmask 255.255.252.0
+    {
+        range 10.213.85.1 10.213.87.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.84.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1749
+    subnet 10.213.96.0 netmask 255.255.252.0
+    {
+        range 10.213.97.1 10.213.99.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.96.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1779
+    subnet 10.213.108.0 netmask 255.255.252.0
+    {
+        range 10.213.109.1 10.213.111.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.108.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1839
+    subnet 10.213.132.0 netmask 255.255.252.0
+    {
+        range 10.213.133.1 10.213.135.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.132.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1809
+    subnet 10.213.120.0 netmask 255.255.252.0
+    {
+        range 10.213.121.1 10.213.123.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.120.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1759
+    subnet 10.213.100.0 netmask 255.255.252.0
+    {
+        range 10.213.101.1 10.213.103.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.100.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1789
+    subnet 10.213.112.0 netmask 255.255.252.0
+    {
+        range 10.213.113.1 10.213.115.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.112.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1529
+    subnet 10.213.8.0 netmask 255.255.252.0
+    {
+        range 10.213.9.1 10.213.11.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.8.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1819
+    subnet 10.213.124.0 netmask 255.255.252.0
+    {
+        range 10.213.125.1 10.213.127.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.124.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1729
+    subnet 10.213.88.0 netmask 255.255.252.0
+    {
+        range 10.213.89.1 10.213.91.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.88.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1699
+    subnet 10.213.76.0 netmask 255.255.252.0
+    {
+        host E-HP4700_01
+        {
+            hardware ethernet 00:17:08:8F:50:47;
+            fixed-address 10.213.77.11;
+        }
+
+        host rnowbmjz2f1
+        {
+            hardware ethernet 00:30:1B:46:4A:F6;
+            fixed-address 10.213.77.21;
+        }
+
+        host Edsall_Ethan.is.ad.igt.com
+        {
+            hardware ethernet 00:10:18:39:1D:9E;
+            fixed-address 10.213.77.77;
+        }
+
+        range 10.213.77.1 10.213.77.10;
+        range 10.213.77.12 10.213.77.20;
+        range 10.213.77.22 10.213.77.76;
+        range 10.213.77.78 10.213.79.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.76.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1549
+    subnet 10.213.16.0 netmask 255.255.252.0
+    {
+        host E-XE7700_01
+        {
+            hardware ethernet 00:00:AA:86:C6:2D;
+            fixed-address 10.213.17.11;
+        }
+
+        range 10.213.17.1 10.213.17.10;
+        range 10.213.17.12 10.213.19.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.16.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1669
+    subnet 10.213.64.0 netmask 255.255.252.0
+    {
+        range 10.213.65.1 10.213.67.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.64.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1579
+    subnet 10.213.28.0 netmask 255.255.252.0
+    {
+        range 10.213.29.1 10.213.31.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.28.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1639
+    subnet 10.213.52.0 netmask 255.255.252.0
+    {
+        host E-HP9000_01
+        {
+            hardware ethernet 00:01:E6:89:A4:56;
+            fixed-address 10.213.53.12;
+        }
+
+        host E-HP2505_01
+        {
+            hardware ethernet 00:11:0A:B8:03:61;
+            fixed-address 10.213.53.13;
+        }
+
+        range 10.213.53.1 10.213.53.11;
+        range 10.213.53.14 10.213.55.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.52.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1609
+    subnet 10.213.40.0 netmask 255.255.252.0
+    {
+        range 10.213.41.1 10.213.43.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.40.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1619
+    subnet 10.213.44.0 netmask 255.255.252.0
+    {
+        host E-XE7760_01
+        {
+            hardware ethernet 00:00:AA:9A:DE:C2;
+            fixed-address 10.213.45.11;
+        }
+
+        host E-XE3250_01
+        {
+            hardware ethernet 00:00:AA:AF:1E:BD;
+            fixed-address 10.213.45.12;
+        }
+
+        host E-HP9000_04
+        {
+            hardware ethernet 00:01:E6:59:2F:F7;
+            fixed-address 10.213.45.13;
+        }
+
+        host E-HP5500_02
+        {
+            hardware ethernet 00:0E:7F:DA:66:BF;
+            fixed-address 10.213.45.14;
+        }
+
+        host E-HP5100_03
+        {
+            hardware ethernet 00:01:E6:A0:31:AE;
+            fixed-address 10.213.45.15;
+        }
+
+        host E-OCETDS600_02
+        {
+            hardware ethernet 00:0B:DB:42:AB:6A;
+            fixed-address 10.213.45.16;
+        }
+
+        host E-OCETDS600_03
+        {
+            hardware ethernet 00:0B:DB:42:AD:E2;
+            fixed-address 10.213.45.17;
+        }
+
+        host E-MN330_01
+        {
+            hardware ethernet 00:13:72:0E:83:39;
+            fixed-address 10.213.45.18;
+        }
+
+        host E-HP3600_04
+        {
+            hardware ethernet 00:14:38:47:D4:BD;
+            fixed-address 10.213.45.19;
+        }
+
+        host E-HP3600_02
+        {
+            hardware ethernet 00:14:38:49:89:2E;
+            fixed-address 10.213.45.20;
+        }
+
+        host E-HP9050_06
+        {
+            hardware ethernet 00:14:38:DB:D9:27;
+            fixed-address 10.213.45.21;
+        }
+
+        host E-HP9050_01
+        {
+            hardware ethernet 00:14:38:DB:E0:1A;
+            fixed-address 10.213.45.22;
+        }
+
+        host E-HP9050_02
+        {
+            hardware ethernet 00:14:38:EA:50:78;
+            fixed-address 10.213.45.23;
+        }
+
+        host E-HP9050_04
+        {
+            hardware ethernet 00:17:08:84:5E:20;
+            fixed-address 10.213.45.24;
+        }
+
+        host E-HP9050_05
+        {
+            hardware ethernet 00:17:08:84:7E:42;
+            fixed-address 10.213.45.25;
+        }
+
+        host E-HP3505_02
+        {
+            hardware ethernet 00:1B:78:1D:5C:BF;
+            fixed-address 10.213.45.26;
+        }
+
+        host E-HP3505_03
+        {
+            hardware ethernet 00:1B:78:1D:6C:1B;
+            fixed-address 10.213.45.27;
+        }
+
+        host E-HP2525_01
+        {
+            hardware ethernet 00:21:5A:E2:80:B2;
+            fixed-address 10.213.45.28;
+        }
+
+        host E-HP5100_04
+        {
+            hardware ethernet 00:11:0A:BA:72:79;
+            fixed-address 10.213.45.29;
+        }
+
+        host Tandberg-1700-WMcMaster
+        {
+            hardware ethernet 00:50:60:81:15:40;
+            fixed-address 10.213.46.157;
+        }
+
+        host PRNO-47-146.is.ad.igt.com
+        {
+            hardware ethernet 14:21:04:D6:67:E1;
+            fixed-address 10.213.47.146;
+        }
+
+        range 10.213.45.1 10.213.45.10;
+        range 10.213.45.30 10.213.46.156;
+        range 10.213.46.158 10.213.47.145;
+        range 10.213.47.147 10.213.47.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.44.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1559
+    subnet 10.213.20.0 netmask 255.255.252.0
+    {
+        host E-HP5100_01
+        {
+            hardware ethernet 00:01:E6:8D:A5:6D;
+            fixed-address 10.213.21.11;
+        }
+
+        range 10.213.21.1 10.213.21.10;
+        range 10.213.21.12 10.213.23.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.20.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1589
+    subnet 10.213.32.0 netmask 255.255.252.0
+    {
+        host PRNO-34-254.is.ad.igt.com
+        {
+            hardware ethernet 68:B5:99:8E:1B:E4;
+            fixed-address 10.213.34.254;
+        }
+
+        host PRNO-35-241.is.ad.igt.com
+        {
+            hardware ethernet 00:0E:7F:E0:5E:01;
+            fixed-address 10.213.35.241;
+        }
+
+        host prno-33-241.is.ad.igt.com
+        {
+            hardware ethernet 00:00:AA:9A:C8:99;
+            fixed-address 10.213.33.241;
+        }
+
+        host PRNO_35_219.is.ad.igt.com
+        {
+            hardware ethernet 00:17:08:88:FF:A2;
+            fixed-address 10.213.35.219;
+        }
+
+        host prno-35-216.is.ad.igt.com
+        {
+            hardware ethernet 00:10:83:57:4F:D0;
+            fixed-address 10.213.35.216;
+        }
+
+        range 10.213.33.1 10.213.33.240;
+        range 10.213.33.242 10.213.34.253;
+        range 10.213.34.255 10.213.35.215;
+        range 10.213.35.217 10.213.35.218;
+        range 10.213.35.220 10.213.35.240;
+        range 10.213.35.242 10.213.35.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.32.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1649
+    subnet 10.213.56.0 netmask 255.255.252.0
+    {
+        range 10.213.57.1 10.213.59.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.56.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1769
+    subnet 10.213.104.0 netmask 255.255.252.0
+    {
+        range 10.213.105.1 10.213.107.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.104.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1679
+    subnet 10.213.68.0 netmask 255.255.252.0
+    {
+        host E-XE7750_01
+        {
+            hardware ethernet 00:00:AA:8D:6E:23;
+            fixed-address 10.213.69.11;
+        }
+
+        host E-HP9000_02
+        {
+            hardware ethernet 00:01:E6:89:BB:E7;
+            fixed-address 10.213.69.12;
+        }
+
+        range 10.213.69.1 10.213.69.10;
+        range 10.213.69.13 10.213.71.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.68.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1739
+    subnet 10.213.92.0 netmask 255.255.252.0
+    {
+        range 10.213.93.1 10.213.95.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.92.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1709
+    subnet 10.213.80.0 netmask 255.255.252.0
+    {
+        host E-HP4300_01
+        {
+            hardware ethernet 00:01:E6:A8:22:F8;
+            fixed-address 10.213.81.11;
+        }
+
+        host E-HP2430_01
+        {
+            hardware ethernet 00:14:22:38:A4:34;
+            fixed-address 10.213.81.12;
+        }
+
+        host E-HP2430_02
+        {
+            hardware ethernet 00:14:38:E4:A0:DA;
+            fixed-address 10.213.81.13;
+        }
+
+        host NPIFD3AB3.fe.ad.igt.com
+        {
+            hardware ethernet 18:A9:05:FD:3A:B3;
+            fixed-address 10.213.82.188;
+        }
+
+        host BlueDude-PC
+        {
+            hardware ethernet 00:26:B9:E3:2A:97;
+            fixed-address 10.213.82.185;
+        }
+
+        range 10.213.81.1 10.213.81.10;
+        range 10.213.81.14 10.213.82.184;
+        range 10.213.82.186 10.213.82.187;
+        range 10.213.82.189 10.213.83.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.80.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1799
+    subnet 10.213.116.0 netmask 255.255.252.0
+    {
+        range 10.213.117.1 10.213.119.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.116.1;
+    }
+    # DHCP_SUBNET: RNO VRF ENG-1829
+    subnet 10.213.128.0 netmask 255.255.252.0
+    {
+        range 10.213.129.1 10.213.131.244;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.213.128.1;
+    }
+    # DHCP_SUBNET: LV-ENG-IDF2B1 - VLAN 1859
+    subnet 10.223.60.0 netmask 255.255.252.0
+    {
+        range 10.223.61.1 10.223.63.249;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.223.60.1;
+        option domain-name-servers 10.223.253.26, 10.20.1.1, 10.20.1.2;
+        option netbios-name-servers 10.223.253.25;
+    }
+    # DHCP_SUBNET: IDF18 - VLAN X
+    subnet 10.21.28.0 netmask 255.255.255.0
+    {
+        range 10.21.28.50 10.21.28.249;
+        option subnet-mask 255.255.255.0;
+        option routers 10.21.28.1;
+    }
+    # DHCP_SUBNET: LV-ENG-IDF3F1B - VLAN 1909
+    subnet 10.223.84.0 netmask 255.255.252.0
+    {
+        range 10.223.85.1 10.223.87.254;
+        update-static-leases true;
+        option subnet-mask 255.255.252.0;
+        option routers 10.223.84.1;
+        option domain-name-servers 10.223.253.26, 10.20.1.1, 10.20.1.2;
+        option netbios-name-servers 10.223.253.25;
+    }
+}
+

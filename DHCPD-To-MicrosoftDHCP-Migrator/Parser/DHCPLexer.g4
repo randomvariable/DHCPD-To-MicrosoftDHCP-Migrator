@@ -100,7 +100,7 @@ BACKSLASH: '\\';
 UID: 'uid';
 UIDSTRING: UID  ~[\r\n]* '\r'? '\n';
 SERVERDUIDSTRING: SERVER_DUID ~[\r\n]* '\r'? '\n';
-STRING :  ~(';' | '\r' | '\n'| '\t' | '"' | '{' | '}' | ' '| ':' |'/' | '\\' )+;
+STRING :  ~(';' | '\r' | '\n'| '\t' | '"' | '{' | '}' | ' '| ':'  )+;
 
 
 WS : [ \t\r\n\-]+ -> skip;

@@ -1,0 +1,20 @@
+The final statistics are: 
+The folowing scopes could not be migrated as there was no corresponding range declaration: 
+---------------------------------------------------------------------------------------
+The folowing host declarations could not be mapped: 
+Possible reasons: a) Duplicate MAC addresses for 2 reservations in the same scope
+                  b) No fixed-address statement present
+                  c) Reservation defined out of range of the newly-configured scopes
+---------------------------------------------------------------------------------------
+The folowing pools could not be migrated as they were defined at a shared-network level
+---------------------------------------------------------------------------------------
+The folowing range declarations could not be updated to the MS server. This occured because microsoft dhcp server does not allow different policies (allow/deny/ignore/if/elsif) statements with overlapping range
+---------------------------------------------------------------------------------------
+Final Statistics
+Total Number of Subnets in ISC conf File: 71
+Subnets not migrated to corresponding Scopes: 0
+Subnets migrated to corresponding Scopes: 71
+Total Number of Host Declarations in the ISC conf File: 185
+Host Declarations not migrated to corresponding Scopes: 0
+Host Declarations migrated to corresponding Scopes: 185
+Total Number of pools that could not be migrated to the Microsoft Server: 0
