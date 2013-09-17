@@ -286,8 +286,12 @@ namespace DhcpdToMicrosoft.Compiler
             catch
             {
             }
+            scope.StartRange = IPAddress.Parse(scope.ScopeId).GetFirstUsuableAddress().ToString();
+            scope.EndRange =  (IPAddress.Parse(scope.ScopeId).GetLastAddress(IPAddress.Parse(scope.SubnetMask))).ToString();
             scope.State = "Active";
             scope.MaxBootpClients = "4294967295";
+            scope.LeaseDuration = "600";
+            scope.Type = "Both";
             Scopesv4.Add(scope);
             return VisitChildren(context);
         }
@@ -558,7 +562,7 @@ namespace DhcpdToMicrosoft.Compiler
             Filters[] allFilters = new Model.Filters[1];
             allFilters[0] = new Model.Filters();
             allFilters[0].Filter = Filters.ToArray();
-            allFilters[0].Allow = true;
+            allFilters[0].Allow = false;
             allFilters[0].Deny = false;
             server.IPv4.Filters = allFilters;
             server.IPv4.NapEnabled = false;
