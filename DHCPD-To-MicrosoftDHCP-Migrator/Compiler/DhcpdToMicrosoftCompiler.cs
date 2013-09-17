@@ -20,8 +20,8 @@ namespace DhcpdToMicrosoft.Compiler
     public class DhcpdToMicrosoftCompiler : AbstractParseTreeVisitor<Object>, IDHCPDConfigVisitor<Object>
     {
         private List<IPv4Lease> Leases;
-        private List<IPv4Filter> Filters;
-        private List<IPv4Reservation> Reservations;
+        private HashSet<IPv4Filter> Filters;
+        private HashSet<IPv4Reservation> Reservations;
         private List<ScopeIPv4> Scopesv4;
         private List<IPRange> IpRanges;
         private ParseTreeProperty<IPAddress> IPAddresses;
@@ -99,12 +99,13 @@ namespace DhcpdToMicrosoft.Compiler
         public DhcpdToMicrosoftCompiler() :base()
         {
             List<IPv4Lease> Leases;
-            List<IPv4Filter> Filters;
-            List<IPv4Reservation> Reservations;
+             Filters = new HashSet<IPv4Filter>();
+            Reservations = new HashSet<IPv4Reservation>();
             Scopesv4 = new List<ScopeIPv4>();
             List<IPRange> IpRanges;
             logger = LogManager.GetCurrentClassLogger(); 
             IPAddresses = new ParseTreeProperty<IPAddress>();    
+            
             BindingStates = new ParseTreeProperty<string>();       
             ClassNames = new ParseTreeProperty<string>();       
             ClassTypes = new ParseTreeProperty<string>();       
@@ -243,8 +244,6 @@ namespace DhcpdToMicrosoft.Compiler
         public Object VisitFixedAddress([NotNull] DHCPDConfigParser.FixedAddressContext context) { return VisitChildren(context); }
         public Object VisitLeaseParameters([NotNull] DHCPDConfigParser.LeaseParametersContext context) { return VisitChildren(context); }
         public Object VisitSharedNetworkDeclaration([NotNull] DHCPDConfigParser.SharedNetworkDeclarationContext context) {
-            logger.Debug("Checking shit");
-
             List<ParserRuleContext> subnets = GetNestedChildren(context, new string[4]{"StatementsContext","StatementContext","DeclarationContext","SubnetDeclarationContext"});
             AddToNestedChildrenProperty(subnets, context.sharedNetwork().STRING().GetText().ToString(), ScopeIPv4SuperscopeNames);
             return VisitChildren(context);
@@ -258,7 +257,6 @@ namespace DhcpdToMicrosoft.Compiler
                 if(!String.IsNullOrEmpty(Value))
                 { 
                     Bag.Put(c, Value);
-                    logger.Debug("Adding " + Value + " to " + c.GetType().Name);
                 }
             }
         }
@@ -277,7 +275,6 @@ namespace DhcpdToMicrosoft.Compiler
                 string[] next = levels.Skip(1).ToArray();
                 foreach (ParserRuleContext c in context.children.Where(x => x.GetType().Name.Equals(levels[0])))
                 {
-                    logger.Debug("Iterating " + c.GetType().Name);
                     GetNestedChildrenIterator(c, next, list);
                 }
             }
@@ -285,7 +282,6 @@ namespace DhcpdToMicrosoft.Compiler
             {
                 foreach (ParserRuleContext c in context.children.Where(x => x.GetType().Name.Equals(levels[0])))
                 {
-                    logger.Debug("Adding " + c.GetType().Name);
                     list.Add(c);
                 }
             }
@@ -295,15 +291,12 @@ namespace DhcpdToMicrosoft.Compiler
         {
             ScopeIPv4 scope = new ScopeIPv4();
             scope.ScopeId = context.subnet().GetText();
-            logger.Debug(scope.ScopeId);
             scope.SubnetMask = context.netmask().GetText();
-            logger.Debug(scope.SubnetMask);
             try
             {
                 string superscope = scope.SuperScopeName = ScopeIPv4SuperscopeNames.Get(context);
                 if (!string.IsNullOrEmpty(superscope))
                 {
-                    logger.Debug("Superscope " + scope.SuperScopeName);
                     scope.SuperScopeName = superscope;
                 }
                 
@@ -316,13 +309,23 @@ namespace DhcpdToMicrosoft.Compiler
             Scopesv4.Add(scope);
             return VisitChildren(context);
         }
-        public Object VisitLeaseTime([NotNull] DHCPDConfigParser.LeaseTimeContext context){
+        public Object VisitLeaseTime([NotNull] DHCPDConfigParser.LeaseTimeContext context)
+        {
             return VisitChildren(context);
         }
-        public Object VisitFailoverDeclaration([NotNull] DHCPDConfigParser.FailoverDeclarationContext context) { return VisitChildren(context); }
+        public Object VisitFailoverDeclaration([NotNull] DHCPDConfigParser.FailoverDeclarationContext context)
+        { 
+            // Not transferable to MS.
+            return VisitChildren(context);
+        }
         public Object VisitKlass([NotNull] DHCPDConfigParser.KlassContext context) { return VisitChildren(context); }
         public Object VisitState([NotNull] DHCPDConfigParser.StateContext context) { return VisitChildren(context); }
-        public Object VisitGroupDeclaration([NotNull] DHCPDConfigParser.GroupDeclarationContext context) { return VisitChildren(context); }
+        public Object VisitGroupDeclaration([NotNull] DHCPDConfigParser.GroupDeclarationContext context)
+        {
+            // Do nothing. Not relevant to Microsoft.
+            return VisitChildren(context);
+        
+        }
         public Object VisitDate([NotNull] DHCPDConfigParser.DateContext context) { return VisitChildren(context); }
         public Object VisitTimestamp([NotNull] DHCPDConfigParser.TimestampContext context)
         {
@@ -332,9 +335,58 @@ namespace DhcpdToMicrosoft.Compiler
         public Object VisitHostDeclaration([NotNull] DHCPDConfigParser.HostDeclarationContext context)
         {
             IPv4Filter filter = new IPv4Filter();
-            filter.Description = context.hostname().STRING().GetText();
             filter.List = "Allow";
-            //filter.MacAddress = context.statements().statement().
+            List<ParserRuleContext> hardwareParameters = GetNestedChildren(context, new String[] { "StatementsContext", "StatementContext", "ParameterContext", "HardwareParameterContext" });
+            if (hardwareParameters != null)
+            {
+                filter.MacAddress = hardwareParameters.First().GetChild(2).GetText();
+            }
+            if (context.hostname().STRING() != null)
+            {
+                filter.Description = context.hostname().STRING().GetText();
+            }
+            else
+            {
+                filter.Description = filter.MacAddress;
+            }
+            try
+            {
+                if ((Filters.First(x => x.MacAddress == filter.MacAddress)) != null)
+                {
+                    logger.Warn("Duplicate MAC Address: " + filter.MacAddress);
+                }
+                else
+                {
+                    Filters.Add(filter);
+                }
+            }
+            catch
+            {
+                Filters.Add(filter);
+            }
+            List<ParserRuleContext> fixedAddressParameters = GetNestedChildren(context, new String[] { "StatementsContext", "StatementContext", "ParameterContext", "FixedAddressParameterContext" });
+            if (fixedAddressParameters!= null & fixedAddressParameters.Count > 0)
+            {
+                IPv4Reservation reservation = new IPv4Reservation();
+                reservation.ClientId = filter.MacAddress;
+                reservation.Name = filter.Description;
+                reservation.IPAddress = (Visit(fixedAddressParameters.First())).ToString();
+                try
+                {
+                    if ((Reservations.First(x => x.IPAddress == reservation.IPAddress)) != null)
+                    {
+                        logger.Warn("Duplicate IP Address: " + reservation.IPAddress);
+                    }
+                    else
+                    {
+                        Reservations.Add(reservation);
+                    }
+                }
+                catch
+                {
+                    Reservations.Add(reservation);
+                }               
+            }
             return VisitChildren(context); 
         }
         public Object VisitSubnet([NotNull] DHCPDConfigParser.SubnetContext context)
@@ -347,7 +399,11 @@ namespace DhcpdToMicrosoft.Compiler
         public Object VisitLeaseDeclaration([NotNull] DHCPDConfigParser.LeaseDeclarationContext context) { return VisitChildren(context); }
         public Object VisitFailoverStateStatement([NotNull] DHCPDConfigParser.FailoverStateStatementContext context) { return VisitChildren(context); }
         public Object VisitStatements([NotNull] DHCPDConfigParser.StatementsContext context) { return VisitChildren(context); }
-        public Object VisitFixedAddressParameter([NotNull] DHCPDConfigParser.FixedAddressParameterContext context) { return VisitChildren(context); }
+        public Object VisitFixedAddressParameter([NotNull] DHCPDConfigParser.FixedAddressParameterContext context) {
+
+            return context.fixedAddress().ip4Address().Ip4Address().GetText();
+        
+        }
         public Object VisitSubnet6([NotNull] DHCPDConfigParser.Subnet6Context context) { return VisitChildren(context); }
         public Object VisitHostnameOrIpAddress([NotNull] DHCPDConfigParser.HostnameOrIpAddressContext context) { return VisitChildren(context); }
         public Object VisitIp6net([NotNull] DHCPDConfigParser.Ip6netContext context) { return VisitChildren(context); }
